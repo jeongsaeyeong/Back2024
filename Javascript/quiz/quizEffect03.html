@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>퀴즈 이펙트03</title>
+
+    <link rel="stylesheet" href="assets/css/quiz.css">
+    <link rel="stylesheet" href="assets/css/ani.css">
+    <link href="https://webfontworld.github.io/Cafe24SsurroundAir/Cafe24SsurroundAir.css" rel="stylesheet">
+</head>
+<body>
+    <header id="header">
+        <h1>
+            <a href="../index.html">Quiz</a>
+        </h1>
+        <nav>
+            <ul>
+                <li><a href="quizEffect01.html">1</a></li>
+                <li><a href="quizEffect02.html">2</a></li>
+                <li class="active"><a href="#">3</a></li>
+                <li><a href="quizEffect04.html">4</a></li>
+                <li><a href="quizEffect05.html">5</a></li>
+                <li><a href="quizEffect06.html">6</a></li>
+                <li><a href="quizEffect07.html">7</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- header -->
+
+    <main id="main">
+        <div class="quiz__wrap">
+            <div class="quiz">
+                <div class="quiz__header"></div>
+                <!-- header -->
+
+                <div class="quiz__main">
+                    <div class="quiz__question"></div>
+                    <div class="quiz__choice">
+                        <label for="choice01">
+                            <input type="radio" id="choice01" name="choice" value="1">
+                            <span></span>
+                        </label>
+                        <label for="choice02">
+                            <input type="radio" id="choice02" name="choice" value="2">
+                            <span></span>
+                        </label>
+                        <label for="choice03">
+                            <input type="radio" id="choice03" name="choice" value="3">
+                            <span></span>
+                        </label>
+                        <label for="choice04">
+                            <input type="radio" id="choice04" name="choice" value="4">
+                            <span></span>
+                        </label>
+                    </div>
+                    <div class="quiz__answer none"></div>
+                    <div class="quiz__desc none"></div>
+                </div>
+                <!-- quiz main -->
+
+                <div class="quiz__footer">
+                    <button class="quiz__confirm">정답 확인하기</button>
+                </div>
+            </div>
+            <!-- quiz -->
+        </div>
+        <!-- quiz_wrap -->
+    </main>
+    <!-- main -->
+
+    <footer id="footer">
+        <a href="mailto:ooooo0516@naver.com">ooooo0516@naver.com</a>
+    </footer>
+    <!-- footer -->
+
+    <script>
+         // 선택자 
+        const quizWrap = document.querySelector(".quiz__wrap");
+        const quizHeader = quizWrap.querySelector(".quiz__header")
+        const quizQuestion = quizWrap.querySelector(".quiz__question");
+        const quizAnswer = quizWrap.querySelector(".quiz__answer");
+        const quizChoice = quizWrap.querySelectorAll(".quiz__choice span");
+        const quizSelect = quizWrap.querySelectorAll(".quiz__choice input");
+        const quizDesc = quizWrap.querySelector(".quiz__desc");
+        const quizConfirm = quizWrap.querySelector(".quiz__confirm");
+
+        // 문제 정보
+        const quizInfo = [
+            {
+                infoDate : "2017년 07월",
+                infoType : "정보처리 기능사",
+                infoNum : "01",
+                infoQuestion : "2개의 조건을 동시에 만족해야 출력하는 논리 연산자는?",
+                infoChoice :["AND", "OR", "SECOND", "MULTI"],
+                infoAnswer : "1",
+                infoDesc : "2개의 조건을 동시에 만족한다는 것은 2개의 조건이 모두 참이라는 의미입니다.",
+            }
+        ];
+
+        // 문제 출력
+
+        for(let i=0; i<quizInfo.length; i++){
+            quizHeader.innerHTML = quizInfo[i].infoDate + " " + quizInfo[i].infoType;
+            quizQuestion.innerHTML = quizInfo[i].infoNum + ". " + quizInfo[i].infoQuestion;
+            quizAnswer.innerText = quizInfo[i].infoAnswer;
+            quizDesc.innerText = quizInfo[i].infoDesc;
+
+            for(let j=0; j<quizChoice.length; j++){
+                quizChoice[j].innerText = quizInfo[i].infoChoice[j];
+            }
+        }
+
+        // 정답 확인 
+
+        quizConfirm.addEventListener("click", () => {
+            let selectedChoice = null;
+
+            for(let i=0; i<quizSelect.length; i++){
+                if(quizSelect[i].checked){
+                    selectedChoice = quizSelect[i].value;
+                    break;
+                }
+            }
+
+            if(selectedChoice !== null){
+                if(selectedChoice == quizInfo[0].infoAnswer){
+                    quizDesc.classList.remove("none");
+                    alert("정답");
+                } else {
+                    quizAnswer.classList.remove("none");
+                    quizDesc.classList.remove("none");
+                    alert("오답");
+                } 
+            } else {
+                alert("보기를 선택하세요! ㅡㅡ");
+            }
+        });
+
+        
+
+    </script>
+</body>
+</html>

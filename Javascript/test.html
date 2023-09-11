@@ -1,0 +1,186 @@
+<div id="mainsample01" class="main__sample"> 
+
+    <div id="sample01" class="sample">
+        <h3>01. body main </h3>
+        <p>스크립트 작업을 위한 main 코드를 작성합니다.</p>
+<pre class="line-numbers"><code class="language-js">{
+&lt;main id="main">
+&lt;div class="quiz__wrap">
+    &lt;div class="quiz">
+        &lt;div class="quiz__header">
+            &lt;span class="quiz__date"></span>
+            &lt;span class="quiz__type"></span>
+        &lt;/div>
+        &lt;div class="quiz__main">
+            &lt;div class="quiz__question">
+                &lt;em>&lt;/em>
+                &lt;span>&lt;/span>
+            &lt;/div>
+            &lt;div class="quiz__animation">
+                &lt;div class="wrapper">
+                    &lt;div class="card-container">
+                        &lt;div class="dog">
+                            &lt;div class="head">
+                                &lt;div class="ears">&lt;/div>
+                                &lt;div class="face">&lt;/div>
+                                &lt;div class="eyes">
+                                    &lt;div class="teardrop">&lt;/div>
+                                &lt;/div>
+                                &lt;div class="nose">&lt;/div>
+                                &lt;div class="mouth">
+                                    &lt;div class="tongue">&lt;/div>
+                                &lt;/div>
+                                &lt;div class="chin">&lt;/div>
+                            &lt;/div>
+                            &lt;div class="body">
+                                &lt;div class="tail">&lt;/div>
+                                &lt;div class="legs">&lt;/div>
+                            &lt;/div>
+                        &lt;/div>
+                    &lt;/div>
+                &lt;/div>
+            &lt;/div>
+            &lt;div class="quiz__input">
+                &lt;input type="text" placeholder="정답을 입력해주세요!">
+            &lt;/div>
+            &lt;div class="quiz__answer">&lt;/div>
+            &lt;div class="quiz__desc">&lt;/div>
+        &lt;/div>
+        // quiz main
+
+        &lt;div class="quiz__footer">
+            &lt;button class="quiz__confirm">정답 확인하기&lt;/button>
+        &lt;/div>
+    &lt;/div>
+    // quiz
+&lt;/div>
+// quiz_wrap
+&lt;/main>
+// main
+}</code></pre>
+        <p class="desc">
+            1. 우선 전체를 감싸는 "quiz__wrap"를 만들고 "quiz__header" "quiz__main" "quiz__footer" 3단 구조로 나눕니다. <br>
+            2. "quiz__header"에 날짜와 문제 유형을 나타내는 "quiz__date" "quiz__type"를 작성합니다.<br>
+            3. "quiz__question"에 문제 번호와 질문을 넣기 위한 "em" "span"를 작성합니다.<br>
+            4. "quiz__input"에 답변을 입력받기 위해 "input"태그를 작성합니다.<br>
+            5. "quiz__answer"는 문제의 정답을 알려주기 위한 태그입니다.<br>
+            6. "quiz__desc"는 문제의 해설을 알려주기 위한 태그입니다.<br>
+            7. "quiz__footer"에서는 "quiz__confirm"버튼을 만들어 정답을 확인할 수 있도록 합니다.<br>
+            8. 이후 "quiz__animation"을 생성해 원하는 애니메이션 효과를 첨부합니다.<br>
+        </p>
+    </div>
+    <!-- // sample01-->
+
+    <div id="sample02" class="sample">
+        <h3>02. 변수 선언 </h3>
+        <p>유동적으로 데이터를 사용하기 위한 변수 선언입니다.</p>
+<pre class="line-numbers"><code class="language-js">{
+// 문제 정보
+const infoDate = "2021년 10월";
+const infoType = "정보처리 기능사";
+const infoNum = "1";
+const infoQuestion = "CPU의 정보처리 속도 단위 중 초당 100만 개의 연산을 수행한다는 의미의 단위는?";
+const infoAnswer = "MIPS"; 
+const infoDesc = "LIPS는 초당 1개, KIPS는 초당 1000개, MIPS는 초당100만개의 연산을 수행하는 것을 의미합니다.";
+}</code></pre>
+        <p class="desc">
+            0. 변수 선언 시 직관적이고 구분이 쉽도록 작성합니다.<br>
+            1. "infoDate" : 변수는 날짜를 입력 받습니다.<br>
+            2. "infoType" : 문제 유형을 입력 받습니다. <br>
+            3. "infoNum" : 문제 번호를 입력 받습니다. <br>
+            4. "infoQuestion" : 문제의 질문을 입력 받습니다.<br>
+            5. "infoAnswer" : 문제의 정답을 입력 받습니다.<br>
+            6. "infoDesc" : 정답의 해설을 입력 받습니다.<br>
+        </p>
+    </div>
+    <!-- // sample02-->
+
+    <div id="sample03" class="sample">
+        <h3>03. 선택자 생성 </h3>
+        <p>변수를 선언 해 데이터를 입력시켜 선택자를 생성합니다.</p>
+<pre class="line-numbers"><code class="language-js">{
+const quizWrap = document.querySelector(".quiz__wrap");
+const quizDate = quizWrap.querySelector(".quiz__date");
+const quizType = quizWrap.querySelector(".quiz__type");
+const quizNum = quizWrap.querySelector(".quiz__question em");
+const quizQuestion = quizWrap.querySelector(".quiz__question span");
+const quizAnswer = quizWrap.querySelector(".quiz__answer");
+const quizDesc = quizWrap.querySelector(".quiz__desc");
+const quizConfirm = quizWrap.querySelector(".quiz__confirm");
+const quizInput = quizWrap.querySelector(".quiz__input input");
+const quizAnimation = quizWrap.querySelector(".quiz__animation");
+}</code></pre>
+        <p class="desc">
+            1. "(클래스 명).querySelector"를 사용할 시 해당 클래스에서만 데이터를 탐색합니다.<br>
+            2. "quizWrap"에는 ".quiz__wrap"의 데이터를 모두 집어 넣습니다.<br>
+            3. "quizDate"에는 "quizWrap.querySelector"를 사용하여 "quizWrap"안에서만 데이터를 탐색하도록 지시합니다.<br>
+            4. ".quiz__question em" ".quiz__question span"처럼 하위 코드가 있을 경우 포함합니다.<br>
+        </p>
+    </div>
+    <!-- // sample03-->
+
+    <div id="sample04" class="sample">
+        <h3>04. 텍스트 정보 입력 </h3>
+        <p>문제 출력을 위해 변수에 저장된 텍스트 정보를 삽입합니다.</p>
+<pre class="line-numbers"><code class="language-js">{
+quizDate.innerText = infoDate;
+quizType.innerText = infoType;
+quizNum.innerText = infoNum;
+quizQuestion.innerText = infoQuestion;
+quizAnswer.innerText = infoAnswer;
+quizDesc.innerText = infoDesc;
+}</code></pre>
+        <p class="desc">
+            1. "innerText"를 사용하여 변수에 저장된 텍스트 정보를 삽입할 수 있습니다.<br>
+            2. quizDate 변수가 가리키는 HTML 요소에 infoDate 변수에 저장된 텍스트 정보를 삽입합니다.<br>
+            3. quizType 변수가 가리키는 HTML 요소에 infoType 변수에 저장된 텍스트 정보를 삽입합니다.<br>
+            4. quizNum 변수가 가리키는 HTML 요소에 infoType 변수에 저장된 텍스트 정보를 삽입합니다.<br>
+            5. quizQuestion 변수가 가리키는 HTML 요소에 infoType 변수에 저장된 텍스트 정보를 삽입합니다.<br>
+            6. quizAnswer 변수가 가리키는 HTML 요소에 infoType 변수에 저장된 텍스트 정보를 삽입합니다.<br>
+            7. quizDesc 변수가 가리키는 HTML 요소에 infoType 변수에 저장된 텍스트 정보를 삽입합니다.<br>
+        </p>
+    </div>
+    <!-- // sample04-->
+
+    <div id="sample05" class="sample">
+        <h3>05. 정답과 해설 숨기기 </h3>
+        <p>답변을 기입했을 때 정답과 해설이 보이도록 처리합니다.</p>
+<pre class="line-numbers"><code class="language-js">{
+quizAnswer.classList.add("none");
+quizDesc.classList.add("none");
+}</code></pre>
+        <p class="desc">
+            1. "quizAnswer" 변수가 가리키는 HTML 요소에 "none" 클래스를 추가합니다. "none" 클래스는 해당 요소를 화면에서 숨깁니다.<br> 
+            2. "quizDesc" 변수가 가리키는 HTML 요소에도 "none" 클래스를 추가합니다. 해당 요소를 화면에서 숨깁니다.<br>
+            3. "classList.remove("none");"을 사용하여 숨긴 정답과 해설을 보일 수 있습니다.<br>
+        </p>
+    </div>
+    <!-- // sample05-->
+
+    <div id="sample06" class="sample">
+        <h3>06. 정답 확인하기 </h3>
+        <p>정답 입력 후 결과를 출력하도록 합니다.</p>
+<pre class="line-numbers"><code class="language-js">{
+const userAnswer = quizInput.value;
+
+if(infoAnswer == userAnswer){
+quizAnimation.classList.add("like");
+} else {
+quizAnimation.classList.add("dislike");
+}
+quizAnswer.classList.remove("none");
+quizDesc.classList.remove("none");
+quizConfirm.classList.add("none");
+quizInput.classList.add("none");
+}</code></pre>
+        <p class="desc">
+            1. 버튼(quizConfirm)에 클릭 이벤트 리스너를 추가합니다. 사용자가 버튼을 클릭하면 리스너 내의 코드 블록이 실행됩니다.<br>
+            2. 사용자가 입력한 답변을 "quizInput" 요소에서 얻어와 "userAnswer" 변수에 저장합니다. 이로써 사용자가 입력한 값을 확인할 수 있습니다.<br>
+            3. 사용자가 입력한 "userAnswer"와 "infoAnswer"를 비교하여 답변이 정확한지 확인합니다. 정확한 경우와 부정확한 경우에 대한 조건문을 시작합니다.<br>
+            4. 만약 답변이 정확하다면, "quizAnimation" 변수가 가리키는 HTML 요소에 "like" 클래스를 추가합니다. 이로써 답변이 맞았을 때 보여줄 피드백 또는 애니메이션 효과를 적용할 수 있습니다.<br>
+            5. 정답 또는 설명을 나타내는 요소인 "quizAnswer"와 "quizDesc" 변수가 가리키는 요소에서 "none" 클래스를 제거합니다. 이로써 해당 요소가 화면에 나타납니다.<br>
+            6. 버튼을 나타내는 "quizConfirm" 변수가 가리키는 요소에 "none" 클래스를 추가하여 버튼을 화면에서 숨깁니다. 또한 사용자 입력을 받는 quizInput 요소도 화면에서 숨깁니다.<br>
+        </p>
+    </div>
+    <!-- // sample06-->          
+</div>
