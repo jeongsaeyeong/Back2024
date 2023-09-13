@@ -82,6 +82,7 @@
     }
     .header__logo img {
         width: 110px;
+        padding-top: 5px;
     }
     
 }
@@ -165,12 +166,14 @@
     }
     .slider__text h3 {
         font-size: 5vw;
+        padding: 0 40px;
+        word-break: keep-all;
     }
 }
 @media (max-width: 800px){
     .slider__inner > .slider {
         background-size: 60%;
-        background-position: center bottom 50px;
+        background-position: center bottom 80px;
     }
     .slider__text h3 {
         text-align: center;
@@ -183,7 +186,7 @@
     }
     .slider__dot {
         position: absolute;
-        bottom: 30px;
+        bottom: 50px;
         left: 50%;
         transform: translate(-50%);
     }
