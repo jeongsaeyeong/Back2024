@@ -90,8 +90,10 @@
 }
 </code></pre>  
                     <p class="desc">
-                        선언적 함수는 function 키워드를 사용하여 정의된 함수로 스크립트 내 어디서든 호출이 가능합니다.<br>
-                        선언적 함수 바깥에 변수를 선언할 시, 전역 변수로 입력됩니다.
+                        1. func라는 이름의 함수를 선언합니다.<br>
+                        2. 함수 내에서 변수 x, y, z를 선언하고 각각 100, 200, "javascript" 값을 할당합니다.<br>
+                        3. 변수 x, y, z의 값을 console.log를 사용하여 출력합니다.<br>
+                        4. 함수 func를 호출합니다.<br>
                     </p>
                     <div class="result">
                         <details>
@@ -126,7 +128,12 @@
         func();
 }
 </code></pre>  
-                    <p class="desc">익명함수는 상수 선언 이후 function 키워드를 사용하는 것이 가능합니다.</p>
+                    <p class="desc">
+                        1. 함수 표현식을 사용하여 func라는 변수에 익명 함수를 할당합니다.<br>
+                        2. 함수 내부에서 세 개의 변수 x, y, z를 선언하고 값을 초기화합니다.<br>
+                        3. console.log(z);를 사용하여 변수 x, y, z의 값을 출력합니다.<br>
+                        4. 마지막으로 func()를 호출하여 함수를 실행합니다.<br>
+                    </p>
                     <div class="result">
                         <details>
                             <summary>결과 확인하기</summary>
@@ -163,7 +170,12 @@
         func1(300,400,"jquery")
 }
 </code></pre>  
-                    <p class="desc">매개변수 함수를 익명함수와 혼용하여 사용하는 것이 가능합니다.</p>
+                    <p class="desc">
+                        1. function 키워드를 사용하여 함수 func를 정의하고, 매개변수 x, y, z를 받고 함수 내부에서 매개변수 x, y, z를 각각 출력합니다.<br>
+                        2. 함수를 호출할 때 func(100, 200, "javascript")와 같이 매개변수에 값을 전달하여 호출합니다.<br>
+                        3. const 키워드를 사용하여 함수 표현식을 변수 func1에 할당하고, 매개변수 x, y, z를 받습니다.<br>
+                        4. 함수를 호출할 때 func1(300, 400, "jquery")와 같이 매개변수에 값을 전달하여 호출합니다.<br>
+                    </p>
                     <div class="result">
                         <details>
                             <summary>결과 확인하기</summary>
@@ -201,7 +213,12 @@
         console.log(func1());
 }
 </code></pre>  
-                    <p class="desc">리턴값 함수를 익명함수와 혼용하여 사용하는 것이 가능합니다.</p>
+                    <p class="desc">
+                        1. 함수 내부에서 x 변수에 100을 할당하고 해당 값을 반환합니다.<br>
+                        2. 함수를 호출하면 x 값인 100이 반환되고, func()을 호출하면 100이 출력됩니다.<br>
+                        3. const 키워드를 사용하여 함수를 변수 func1에 할당합니다.<br>
+                        4. 함수를 호출하면 x 값인 200이 반환되고, func1()을 호출하면 200이 출력됩니다.<br>
+                    </p>
                     <div class="result">
                         <details>
                             <summary>결과 확인하기</summary>
@@ -229,7 +246,12 @@
         console.log(func1(200));
 }
 </code></pre>  
-                    <p class="desc">익명함수와 혼용하여 사용하는 것이 가능합니다.</p>
+                    <p class="desc">
+                        1. function 키워드를 사용하여 함수를 정의하고 x라는 매개변수를 받아서 해당 값을 그대로 반환합니다. <br>
+                        2. 함수를 호출하면 x 값이 반환되고, 이 경우에는 func(100)을 호출하면 100이 출력됩니다.<br>
+                        3. const 키워드를 사용하여 함수를 변수 func1에 할당합니다.<br>
+                        4. 함수를 호출하면 x 값이 반환되고, 이 경우에는 func1(200)을 호출하면 200이 출력됩니다.<br>
+                    </p>
                     <div class="result">
                         <details>
                             <summary>결과 확인하기</summary>
@@ -244,7 +266,10 @@
 
                 <div id="sample06" class="sample">
                     <h3>06. 화살표 함수 : 선언적 함수</h3>
-                    <p> 선언적 함수를 화살표 함수로 바꾼 것입니다.</p>
+                    <p>화살표 함수(arrow function)는 ES6(ECMAScript 2015)에서 도입된 새로운 함수 선언 방식입니다. 
+                        기존의 함수 선언 방식인 함수 표현식(function expression)과 비교하여 간결하고 가독성이 좋으며, 
+                        주로 익명 함수나 콜백 함수로 사용됩니다. 
+                        화살표 함수의 주요 특징과 사용법을 설명하겠습니다.</p>
 <pre><code class="language-js"> {
         func = () => {
             document.write("함수가 실행되었습니다.");
@@ -252,7 +277,10 @@
         func();
 }
 </code></pre>  
-                    <p class="desc">매개변수 함수를 익명함수와 혼용하여 사용하는 것이 가능합니다.</p>
+                    <p class="desc">
+                        1. 함수 내부에서 document.write를 사용하여 "함수가 실행되었습니다." 문자열을 웹 페이지에 출력합니다.<br>
+                        2. 함수 내부의 코드 블록을 실행하며, "함수가 실행되었습니다." 문자열이 웹 페이지에 출력됩니다.<br>
+                    </p>
                     <div class="result">
                         <details>
                             <summary>결과 확인하기</summary>
@@ -274,7 +302,10 @@
         func();
 }
 </code></pre>  
-                    <p class="desc">매개변수 함수를 익명함수와 혼용하여 사용하는 것이 가능합니다.</p>
+                    <p class="desc">
+                        1. 이 화살표 함수는 매개변수를 가지지 않고 함수 내부에서 document.write를 사용하여 "함수가 실행되었습니다." 문자열을 웹 페이지에 출력합니다. <br>
+                        2. 이 호출은 함수 내부의 코드 블록을 실행하게 되며, "함수가 실행되었습니다." 문자열이 웹 페이지에 출력됩니다.<br>
+                    </p>
                     <div class="result">
                         <details>
                             <summary>결과 확인하기</summary>
@@ -296,7 +327,10 @@
         func("함수가 실행되었습니다.");
 }
 </code></pre>  
-                <p class="desc">매개변수 함수를 익명함수와 혼용하여 사용하는 것이 가능합니다.</p>   
+                <p class="desc">
+                    1. 화살표 함수는 x라는 매개변수를 받고 함수 내부에서 document.write를 사용하여 x를 웹 페이지에 출력합니다.<br>
+                    2. func 함수를 호출하고 매개변수로 문자열 "함수가 실행되었습니다."를 전달합니다.<br>
+                </p>   
                     <div class="result">
                         <details>
                             <summary>결과 확인하기</summary>
@@ -319,6 +353,11 @@
         document.write(func()); 
 }
 </code></pre>  
+                    <p class="desc">
+                        1. func라는 변수에 화살표 함수를 할당합니다. 화살표 함수는 매개변수가 없으므로 () 내부가 비어 있습니다.<br>
+                        2. 함수 내부에서 상수 x에 문자열 "함수가 실행되었습니다."를 할당합니다. 이 값을 return 키워드를 사용하여 반환합니다.<br>
+                        3. func 함수를 호출하고 그 결과를 document.write를 사용하여 웹 페이지에 출력합니다.<br>
+                    </p>   
                     <div class="result">
                         <details>
                             <summary>결과 확인하기</summary>
@@ -357,6 +396,12 @@
         console.log(func3("실행되었습니다.4"));
 }
 </code></pre>  
+                    <p class="desc">
+                        1. 함수 표현식으로, func라는 변수에 화살표 함수를 할당합니다.함수는 str 매개변수를 받아 그 값을 반환합니다.<br>
+                        2. 나의 매개변수 str을 받는 경우, 괄호를 생략할 수 있습니다.<br>
+                        3. 함수의 몸통이 단일 표현식인 경우, 중괄호와 return 문을 생략할 수 있습니다.<br>
+                        4. 함수 선언에 const 키워드나 let, var 등을 사용하지 않으면 전역 스코프에 변수가 선언됩니다. 이렇게 전역에 변수를 선언하는 것은 가독성과 유지보수 측면에서 좋지 않을 수 있으므로 피하는 것이 좋습니다.<br>
+                    </p>   
                     <div class="result">
                         <details>
                             <summary>결과 확인하기</summary>
@@ -408,7 +453,7 @@
 
                 <div id="sample12" class="sample">
                     <h3>12. 함수 유형 : 함수와 변수를 이용한 형태</h3>
-                    <p>매개변수 함수를 화살표 함수로 바꾼 것입니다.</p>
+                    <p>함수 밖 변수를 사용하는 형태입니다.</p>
 <pre><code class="language-js"> {
         const num = 12;
         const str = "함수가 실행되었습니다.";
@@ -451,7 +496,7 @@
 
                 <div id="sample13" class="sample">
                     <h3>13. 함수 유형 : 함수와 배열을 이용한 형태</h3>
-                    <p>매개변수 함수를 화살표 함수로 바꾼 것입니다.</p>
+                    <p>함수 밖에 선언한 배열을 사용하는 형태입니다.</p>
 <pre><code class="language-js"> {
         const num = [13, 14];
         const str = ["함수가 실행되었습니다.", "함수가 실행되었습니다."];
@@ -496,7 +541,7 @@
 
                 <div id="sample14" class="sample">
                     <h3>14. 함수 유형 : 함수와 객체를 이용한 형태</h3>
-                    <p>매개변수 함수를 화살표 함수로 바꾼 것입니다.</p>
+                    <p>함수 밖에 선언한 객체를 불러와 사용하는 형태입니다.</p>
 <pre><code class="language-js"> {
         const info = {
             num : 15,
@@ -538,7 +583,7 @@
 
                 <div id="sample15" class="sample">
                     <h3>15. 함수 유형 : 함수와 객체 및 배열를 이용한 형태</h3>
-                    <p>매개변수 함수를 화살표 함수로 바꾼 것입니다.</p>
+                    <p>함수 안에 객체와 배열을 사용하는 것입니다.</p>
 <pre><code class="language-js"> {
         const info = [
             { num:16, str: "함수가 실행되었습니다."},
@@ -583,7 +628,7 @@
 
                 <div id="sample16" class="sample">
                     <h3>16. 함수 유형 : 객체 안에 함수를 이용한 형태</h3>
-                    <p>매개변수 함수를 화살표 함수로 바꾼 것입니다.</p>
+                    <p>객체 안에 함수를 선언하여 사용이 가능합니다.</p>
 <pre><code class="language-js"> {
         const info = {
             num: 18,
