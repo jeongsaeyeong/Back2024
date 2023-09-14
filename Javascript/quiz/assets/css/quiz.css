@@ -535,59 +535,59 @@ body::after {
 }
 
 @media (max-width: 600px) {
-    #header h1 {
+    #header {
+        flex-direction: column;
+    }
+    #header h1 a{
         padding: 15px;
     }
-
+    #header nav {
+        padding-right: 0;
+        margin-bottom: 20px;
+    }
     #header nav li a {
-        padding: 7px;
         width: 30px;
         height: 30px;
+        padding: 7px;
     }
-
     .quiz__wrap {
         padding: 0 16px;
         margin-top: 0;
     }
-
     .quiz__wrap>.quiz {
         width: 100%;
         padding: 20px;
     }
-
     .quiz__header {
         margin-bottom: 10px;
     }
-
     .quiz__date {
         font-size: 14px;
     }
-
     .quiz__type {
         font-size: 14px;
     }
-
     .quiz__question {
         margin-bottom: 10px;
+        line-height: 1.5;
+        font-size: 20px;
     }
-
     .quiz__question em {
         font-size: 20px;
     }
-
     .quiz__question span {
         font-size: 20px;
     }
-
     .quiz__input input {
         padding: 14px;
     }
-
     .quiz__answer {
         padding: 14px;
     }
-
     .quiz__desc {
         padding: 14px;
+    }
+    .quiz__choice label span {
+        padding: 13px;
     }
 }
