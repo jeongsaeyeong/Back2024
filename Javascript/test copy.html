@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,49 +7,17 @@
 </head>
 <body>
     <script>
-        //
-        const aaa = [10, 20, 30, 40, 50, 60, 70, 80, 90];
-        let sum=0;
-        let sum1=0;
-        let sum2=0;
-        let sum3=0;
-        let sum4=0;
-        let sum5=0;
+        const infoDate = "해당 변수는 문제의 날짜를 나타내는 변수입니다.";
+        const infoType = "해당 변수는 문제의 정보를 나타내는 변수입니다.";
+        const infoNum = "해당 변수는 문제의 번호를 나타내는 변수입니다.";
+        const infoQuestion = "해당 변수는 문제를 나타내는 변수입니다.";
+        const infoAnser = "해당 변수는 문제의 답을 나타내는 변수입니다.";
+        const infoDesc = "해당 변수는 답의 설명을 나타내는 변수입니다.";
 
-        for(let i=0; i<aaa.length; i++){
-            sum += aaa[i];
-        }
-        console.log(sum);
+        // 해당 변수는 전체 html에서 querySelector을 사용해 
+        const quizWrap = document.querySelector(".quiz__wrap");
 
-        aaa.forEach((el) => {
-            sum1+=el;
-        });
 
-        console.log(sum);
-
-        for(let el of aaa){
-            sum2+=el;
-        }
-
-        console.log(sum2);
-
-        for(let el in aaa){
-            sum3+=aaa[el];
-        }
-
-        console.log(sum3);
-
-        aaa.map((el) => {
-            sum4+=el;
-        })
-
-        console.log(sum4);
-
-        aaa.map((el) => {
-            sum5+=el;
-        })
-
-        console.log(sum5);
     </script>
 </body>
 </html>
