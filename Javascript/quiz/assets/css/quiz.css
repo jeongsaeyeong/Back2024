@@ -249,7 +249,13 @@ body::after {
 .quiz__question {
     margin-bottom: 20px;
 }
-
+.quiz__img {
+    margin-bottom: 10px;
+}
+.quiz__img img {
+    border: 1px solid #362e31;
+    width: 100%;
+}
 .quiz__choice {
     margin-bottom: 20px;
 }
@@ -257,7 +263,6 @@ body::after {
 .quiz__choice label {
     display: block;
     width: 100%;
-
 }
 
 .quiz__choice label input {
@@ -308,22 +313,69 @@ body::after {
     border: 1px solid #9e4061;
     padding: 17px;
     margin-bottom: 5px;
+    font-size: 16px;
+    line-height: 1.4;
+    transition: border-color 0.3s, background-color 0.3s;
+    border-radius: 3px;
+    color: #9e4061;
 }
-.quiz__choice .choice:nth-child(1)::before {
-    content: "1.";
+.quiz__choice .choice:hover {
+    border-color: #9e4061;
+    background-color: #ffedf4;
+    cursor: pointer;
 }
-.quiz__choice .choice:nth-child(2)::before {
-    content: "2.";
+.quiz__choice .choice.correct {
+    position: relative;
+    border-color: #9e4061;
+    background-color: #ffeaf1;
+    color: #9e4061;
+    padding-right: 55px;
 }
-.quiz__choice .choice:nth-child(3)::before {
-    content: "3.";
+.quiz__choice .choice.correct::after {
+    content: '';
+    width: 14px;
+    height: 14px;
+    border: 6px solid #9e4061;
+    border-radius: 50%;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
 }
-.quiz__choice .choice:nth-child(4)::before {
-    content: "4.";
+.quiz__choice .choice.incorrect {
+    position: relative;
+    border-color: #40519e;
+    background-color: #ffeaf1;
+    background-color: rgba(243, 238, 255, 0.178);
+    color: #40519e;
+    padding-right: 55px;
 }
-
-.quiz__choice .choice.correct {}
-.quiz__choice .choice.incorrect {}
+.quiz__choice .choice.incorrect::before {
+    content: '';
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 28px;
+    height: 6px;
+    background-color: #40519e;
+    border-radius: 4px;
+    transform: rotate(-45deg);
+    margin-top: -3px;
+}
+.quiz__choice .choice.incorrect::after {
+    content: '';
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 28px;
+    height: 6px;
+    background-color: #40519e;
+    border-radius: 4px;
+    transform: rotate(45deg);
+    margin-top: -3px;
+}
 .quiz__animation {
     border: 1px solid #ffe3ec;
     margin-bottom: 10px;
