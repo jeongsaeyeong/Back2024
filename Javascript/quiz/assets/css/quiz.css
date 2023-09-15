@@ -109,6 +109,7 @@ body {
     background-image: url(../img/Desktop\ -\ 1-min.png);
     background-size: cover;
     background-position: center center;
+    background-color: no-repeat;
     position: relative;
 }
 
@@ -135,22 +136,18 @@ body::after {
     align-items: center;
     justify-content: space-between;
 }
-
 #header h1 a {
     display: inline-block;
     color: #fff;
     padding: 20px;
     font-size: 30px;
 }
-
 #header nav {
     padding-right: 20px;
 }
-
 #header nav li {
     display: inline-block;
 }
-
 #header nav li a {
     padding: 10px;
     display: inline-block;
@@ -162,12 +159,10 @@ body::after {
     line-height: 1;
     color: #fff;
 }
-
 #header nav li.active a {
     background-color: #fff;
     color: #000;
 }
-
 /* main */
 #main {
     min-height: 85vh;
@@ -176,17 +171,16 @@ body::after {
 /* quiz__wrap */
 .quiz__wrap {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
+    flex-wrap: wrap;
     margin-top: 40px;
 }
-
 .quiz__wrap>.quiz {
     width: 500px;
     min-height: 400px;
     background-color: #fff;
-    padding: 30px;
-    border-radius: 20px;
+    padding: 40px 30px;
+    border-radius: 10px;
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
     margin: 10px;
 }
