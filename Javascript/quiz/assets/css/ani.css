@@ -28,6 +28,7 @@
 }
 
 .card-container {
+    width: 100%;
     position: relative;
     margin: auto;
     padding-top: 125px;
