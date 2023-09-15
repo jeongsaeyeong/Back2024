@@ -166,14 +166,14 @@
     youAge int(5) NOT NULL,
     regTime int(30) NOT NULL,
     PRIMARY KEY(memberID)
-) charset=utf8;
+) 
+charset=utf8;
 </code></pre>
                     <h4 id="intro5-2" class="page-header">테이블 전체보기</h4>
                     <div class="bs-callout bs-callout-info">
                         show tables;
                     </div>
-<pre><code class="language-js">
-    +---------------+
+<pre><code class="language-js">    +---------------+
     | Tables_in_aaa |
     +---------------+
     | members       |
@@ -184,8 +184,7 @@
                     <div class="bs-callout bs-callout-info">
                         desc 테이블 이름;
                     </div>
-<pre><code class="language-js">
-    +----------+------------------+------+-----+---------+----------------+
+<pre><code class="language-js">    +----------+------------------+------+-----+---------+----------------+
     | Field    | Type             | Null | Key | Default | Extra          |
     +----------+------------------+------+-----+---------+----------------+
     | memberID | int(10) unsigned | NO   | PRI | NULL    | auto_increment |
@@ -215,7 +214,6 @@
                         INSERT INTO 테이블명(필드명) VALUES;
                     </div>
 <pre><code class="language-js">
-
     INSERT INTO members(youEmail, youName, youPass, youAge, regTime) VALUES("jeongsaeyeong@gmail.com", "정새영", "1234", "21", "20230913");
     INSERT INTO members(youEmail, youName, youPass, youAge, regTime) VALUES("webstoryboy@naver.com", "황상연", "9876", "10", "20230913");
     INSERT INTO members(youEmail, youName, youPass, youAge, regTime) VALUES("lee.jiyoung492@gmail.com", "이지영", "0106", "27", "20230913");

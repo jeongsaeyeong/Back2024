@@ -211,7 +211,7 @@
 }
 .intro__img .img1 {
     position: absolute;
-    left: 20%;
+    left: 20%; 
     top: 10%;
 }
 .intro__img .img1 img {
@@ -219,7 +219,7 @@
 }
 .intro__img .img2 {
     position: absolute;
-    left: -25%;
+    left: -25%; 
     top: -20%;
 }
 .intro__img .img2 img {
@@ -227,9 +227,9 @@
 }
 .intro__img .img3 {
     position: absolute;
-    left: 50%;
+    left: 50%; 
     top: -20%;
-    transform: translate(-50%);
+    transform: translateX(-50%);
 }
 .intro__img .img3 img {
     width: 600px;
@@ -313,8 +313,9 @@
         width: 100%;
     }
 }
+
 /* _________________________pointuse_________________________ */
-.piontUse {
+#piontUse {
     background-color: #F8F8F8;
 }
 .use__inner {
