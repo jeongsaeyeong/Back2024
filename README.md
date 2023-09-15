@@ -4,7 +4,7 @@ https://jeongsaeyeong.github.io/webs2024/
 
 ## 자바스크립트
 자바스크립트를 공부합니다.
-https:/jeongsaeyeong.github.io/webs2024/Javascript
+https://jeongsaeyeong.github.io/webs2024/Javascript/index.html
 
 ## 레이아웃
 여러 가지 유형별 레이아웃을 공부합니다.
