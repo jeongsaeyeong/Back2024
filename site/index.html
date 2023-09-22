@@ -16,6 +16,10 @@
     <link rel="stylesheet" href="assets/css/reset.css" />
     <link rel="stylesheet" href="assets/css/common.css" />
     <link rel="stylesheet" href="assets/css/style.css" />
+
+    <!-- swiper -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+
 </head>
 <body>
     <div id="skip">
@@ -52,8 +56,39 @@
 
     <main id="main" role="main" >
         <section id="sliderWrap">
-            <div class="slider__inner">
-                <div class="slider">                
+            <div class="swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="slider__text">
+                            <h3>현대백화점그룹의 <br /><em>다양한 제휴사</em>를 만나보세요!</h3>
+                            <p>다양한 브랜드에서 적립하고 사용하는<br>즐거운 일상의 포인트 제도 </p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="slider__text">
+                            <h3>현대백화점그룹의 <br /><em>다양한 제휴사</em>를 만나보세요!</h3>
+                            <p>다양한 브랜드에서 적립하고 사용하는<br>즐거운 일상의 포인트 제도 </p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="slider__text">
+                            <h3>현대백화점그룹의 <br /><em>다양한 제휴사</em>를 만나보세요!</h3>
+                            <p>다양한 브랜드에서 적립하고 사용하는<br>즐거운 일상의 포인트 제도 </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+
+                <div class="swiper-button">
+                    <div class="swiper-button-play"></div>
+                    <div class="swiper-button-stop"></div>
+                </div>
+            </div>
+
+            <!-- <div class="slider__inner">
+                <div class="slider">         
                     <div class="slider__text">
                         <h3>현대백화점그룹의 <br /><em>다양한 제휴사</em>를 만나보세요!</h3>
                         <p>다양한 브랜드에서 적립하고 사용하는<br>즐거운 일상의 포인트 제도 </p>
@@ -70,7 +105,7 @@
                         <a href="#" class="right"><span class="ir">다음이미지</span></a>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </section>
 
         <!-- sliderWrap -->
@@ -202,8 +237,84 @@
 
 
     <footer id="footer" role="contentinfo">
-        <h2></h2>
+        <div class="footer__inner">
+            <div class="container">
+                <div class="footer_logo">
+                    <img src="assets/img/W.Point.svg" alt="W.Point">
+                </div>
+                <address class="footer_info">
+                    <ul>
+                        <li><a href="#">이용약관</a></li>
+                        <li><a href="#">위치기반서비스 이용약관</a></li>
+                        <li><a href="#">개인정보처리방침</a></li>
+                        <li><a href="#">개인정보보호센터</a></li>
+                    </ul>
+                    <ul>
+                        <li>주식회사 현대백화점 서울시 강남구 98길 12 고객센터 1800-2800</li>
+                        <li>© HYUNDAI DEPARTMENT STORE GROUP Co. Ltd. ALL RIGHTS RESERVED</li>
+                    </ul>
+                </address>
+                <div class="footer_sns">
+                    <ul>
+                        <li><a href="#"><span class="ir">naver</span></a></li>
+                        <li><a href="#"><span class="ir">insta</span></a></li>
+                        <li><a href="#"><span class="ir">facebook</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </footer>
     <!-- footer -->
+
+
+    <!-- javascript -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+    <script>
+        let swiper = new Swiper(".swiper", {
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            centeredSlides: true,
+            autoplay: {
+                delay: 2500,
+                disableOnInteraction: false,
+            },
+        });
+
+        const btnStop = document.querySelector(".swiper-button-stop")
+        const btnPlay = document.querySelector(".swiper-button-play")
+
+        btnStop.addEventListener("click", () => {
+            swiper.autoplay.stop();
+        });
+
+        btnPlay.addEventListener("click", () => {
+            swiper.autoplay.start();
+        });
+
+        // slider 2
+        let swiper2 = new Swiper(".swiper2", {
+            slidesPerView: 5,
+            // spaceBetween: 30,
+
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+
+
+    </script>
 </body>
 </html>

@@ -236,7 +236,7 @@ a {
 }
 .modal__box .cont {
     background-color: #36282e;
-    height: 100%;
+    height: 80vh;
     overflow-y: auto;
     box-sizing: border-box;
     border-bottom-left-radius: 0.5rem;
