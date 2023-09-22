@@ -65,53 +65,96 @@
                 <div class="cont">
                     <div class="active">
 <pre><code class="language-js">
-        // 문제 정보
-        const infoDate = "2021년 10월";
-        const infoType = "정보처리 기능사";
-        const infoNum = "1";
-        const infoQuestion = "CPU의 정보처리 속도 단위 중 초당 100만 개의 연산을 수행한다는 의미의 단위는?";
-        const infoAnswer = "MIPS"; 
-        const infoDesc = "LIPS는 초당 1개, KIPS는 초당 1000개, MIPS는 초당100만개의 연산을 수행하는 것을 의미합니다.";
+    // 선택자
+    const quizWrap = document.querySelector(".quiz__wrap");
+    const quizCheck = document.querySelector(".quiz__check");
 
-        // 선택자
-        const quizWrap = document.querySelector(".quiz__wrap");
-        const quizDate = quizWrap.querySelector(".quiz__date");
-        const quizType = quizWrap.querySelector(".quiz__type");
-        const quizNum = quizWrap.querySelector(".quiz__question em");
-        const quizQuestion = quizWrap.querySelector(".quiz__question span");
-        const quizAnswer = quizWrap.querySelector(".quiz__answer");
-        const quizDesc = quizWrap.querySelector(".quiz__desc");
-        const quizConfirm = quizWrap.querySelector(".quiz__confirm");
-        const quizInput = quizWrap.querySelector(".quiz__input input");
-        const quizAnimation = quizWrap.querySelector(".quiz__animation");
+    // 변수 설정 
+    let currentIndex = 0;       // 현재문제
+    let quizInfo = [];          // 모든 퀴즈 정보
 
-        // 문제 출력
-        quizDate.innerText = infoDate;
-        quizType.innerText = infoType;
-        quizNum.innerText = infoNum;
-        quizQuestion.innerText = infoQuestion;
-        quizAnswer.innerText = infoAnswer;
-        quizDesc.innerText = infoDesc;
+    // 문제 가져오기 
+    const fetchQuiz = () => {
+        fetch("https://jeongsaeyeong.github.io/webs2024/json/gineungsaJC2011_05.json")
+            .then(res => res.json())
+            .then(items => {
+                quizInfo = items.map((item, index) => {
+                    const formattedQuiz = {
+                        infoDate: "2011년 5회",
+                        infoType: item.subject,
+                        infoQuiestion: item.question,
+                        infoDesc: item.desc,
+                        infoAnswer: item.correct_answer
+                    }
 
-        // 정답 해설 숨기기
-        quizAnswer.classList.add("none");
-        quizDesc.classList.add("none");
+                    // 보기 가져오기 
 
-        // 정답 확인하기
-        quizConfirm.addEventListener("click", () => {
-            const userAnswer = quizInput.value;
+                    const choices = [...item.incorrect_answers, item.correct_answer];
 
-            if(infoAnswer == userAnswer){
-                quizAnimation.classList.add("like");
-            } else {
-                quizAnimation.classList.add("dislike");
-            }
-            quizAnswer.classList.remove("none");
-            quizDesc.classList.remove("none");
-            quizConfirm.classList.add("none");
-            quizInput.classList.add("none");
+                    // 보기 랜덤 섞기 
+                    for (let i = choices.length - 1; i > 0; i--) {
+                        const j = Math.floor(Math.random() * (i + 1));
+                        [choices[i], choices[j]] = [choices[j], choices[i]];
+                    }
+
+                    formattedQuiz.infoChoice = choices;
+                    return formattedQuiz;
+                });
+
+                updateQuiz();
+            });
+    }
+
+    // 문제 출력
+        const updateQuiz = () => {
+            const quizArray = [];
+
+            quizInfo.forEach((quiz, number) => {
+                quizArray.push(`
+                    < div class="quiz">
+                        < div class="quiz__header">${quiz.infoDate} ${quiz.infoType}< /div>
+                        < div class="quiz__main">
+                            < div class="quiz__question">
+                                ${number + 1}.${quiz.infoQuiestion}
+                            < /div>
+                            < div class="quiz__choice">
+                                < label for="choice01-${number}">
+                                    < input type="radio" id="choice01-${number}" name="choice-${number}" value="1">
+                                    < span>${quiz.infoChoice[0]}< /span>
+                                < /label>
+                                < label for="choice02-${number}">
+                                    < input type="radio" id="choice02-${number}" name="choice-${number}" value="2">
+                                    < span>${quiz.infoChoice[1]}< /span>
+                                < /label>
+                                < label for="choice03-${number}">
+                                    < input type="radio" id="choice03-${number}" name="choice-${number}" value="3">
+                                    < span>${quiz.infoChoice[2]}< /span>
+                                < /label>
+                                < label for="choice04-${number}">
+                                    < input type="radio" id="choice04-${number}" name="choice-${number}" value="4">
+                                    < span>${quiz.infoChoice[3]}< /span>
+                                < /label>
+                            < /div>
+                            < div class="quiz__answer none">${quiz.infoAnswer}< /div>
+                            < div class="quiz__desc none">${quiz.infoDesc}< /div>
+                        < /div>
+                < /div>
+                `);
+            })
+
+            quizWrap.innerHTML = quizArray.join("");
+        }
+
+
+        // 정답 확인
+        quizCheck.addEventListener("click", () => {
+            
         });
-
+        
+        // 페이지가 로드된 후 실행
+        document.addEventListener("DOMContentLoaded", () => {
+            fetchQuiz();
+        });
 </code></pre>
                     </div>
                 </div>
