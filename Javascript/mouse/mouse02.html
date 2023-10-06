@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마우스 이펙트</title>
+    <link href="https://webfontworld.github.io/NexonLv1Gothic/NexonLv1Gothic.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/mouse.css">
+    <style>
+        .mouse__wrap {
+            cursor: none;
+        }
+        .mouse__text {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .mouse__text p {
+            font-size: 2.4vw;
+            line-height: 1.9;
+            color: #3d0616;
+            font-weight: 300;
+        }
+        .mouse__text p span {
+            color: #fff;
+            border-bottom: 1px solid pink;
+            cursor: pointer;
+            font-weight: 300;
+        }
+        .mouse__cursor01 {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 10px;
+            height: 10px;
+            z-index: 999;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            user-select: none;
+            pointer-events: none;
+            transition: transform 0.3s;
+        }
+        .mouse__cursor02 {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 30px;
+            height: 30px;
+            z-index: 10000;
+            border-radius: 50%;
+            background-color: rgba(240, 147, 147, 0.726);
+            user-select: none;
+            pointer-events: none;
+            transition: transform 0.3s;
+        }
+        .mouse__cursor01.active {
+            transform: scale(0);
+        }
+        .mouse__cursor02.active {
+            transform: scale(5);
+            background-color: rgb(255, 255, 255);;
+        }
+    </style>
+</head>
+<body  class="images02">
+    <header id="header">
+        <h1>Javascript Mouse Effect01</h1>
+        <p>마우스 이펙트 - 부드럽게</p>
+        <nav>
+            <ul>
+                <li><a href="mouse01.html">1</a></li>
+                <li class="active"><a href="mouse02.html">2</a></li>
+                <li><a href="mouse03.html">3</a></li>
+                <li><a href="mouse04.html">4</a></li>
+                <li><a href="mouse05.html">5</a></li>
+                <li><a href="mouse06.html">6</a></li>
+                <li><a href="mouse07.html">7</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main id="main">
+        <div class="mouse__wrap">
+            <div class="mouse__cursor01"></div>
+            <div class="mouse__cursor02"></div>
+            <div class="mouse__text">
+                <p><span>Curves</span> are so <span>Emotional</span></p>
+                <p><span>곡선</span>은 너무 <span>감정</span>적이다.</p>
+            </div>
+        </div>
+    </main>
+    <!-- header -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script>
+        // 선택자
+        const mouseCursor01 = document.querySelector(".mouse__cursor01")
+        const mouseCursor02 = document.querySelector(".mouse__cursor02")
+
+        window.addEventListener("mousemove", (e) => {
+            // mouseCursor01.style.left = e.pageX = "px";
+            // mouseCursor01.style.top = e.pageY = "px";
+            // mouseCursor02.style.left = e.pageX = "px";
+            // mouseCursor02.style.top = e.pageY = "px";
+        
+            gsap.to(mouseCursor01, {duration: 0.3, left: e.pageX-5, top: e.pageY-5});
+            gsap.to(mouseCursor02, {duration: 0.8, left: e.pageX-20, top: e.pageY-20});
+        })
+
+        document.querySelectorAll(".mouse__text span").forEach((span) => {
+            span.addEventListener("mouseenter" ,() => {
+                mouseCursor01.classList.add("active");
+                mouseCursor02.classList.add("active");
+            })
+            span.addEventListener("mouseleave" ,() => {
+                mouseCursor01.classList.remove("active");
+                mouseCursor02.classList.remove("active");
+            })
+        })
+        
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>정보처리 기능사 주관식</title>
+
+    <link rel="stylesheet" href="assets/css/quiz.css">
+    <link rel="stylesheet" href="../../assets/css/default.min.css">
+    <link href="https://webfontworld.github.io/Cafe24SsurroundAir/Cafe24SsurroundAir.css" rel="stylesheet">
+
+    <style>
+        .input__style {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            border: 1px solid #973c57;
+        }
+        .quiz__desc::before {
+            content: ' ';
+        }
+    </style>
+</head>
+
+<body>
+    <header id="header">
+        <h1>
+            <a href="../index.html">Quiz</a>
+        </h1>
+    </header>
+    <!-- header -->
+
+    <main id="main">
+        <div class="quiz__wrap">
+        </div>
+        <!-- quiz_wrap -->
+    </main>
+    <!-- main -->
+
+    <footer id="footer">
+        <a href="mailto:ooooo0516@naver.com">ooooo0516@naver.com</a>
+    </footer>
+
+    <script>
+        // 선택자 
+        const quizWrap = document.querySelector(".quiz__wrap");
+
+        let currentIndex = 0;
+        let quizInfo = [];          // 모든 퀴즈 정보
+
+        // 문제 정보 
+        const fetchQuiz = () => {
+            fetch("https://webstoryboy.github.io/webstoryboy/w_json/gineungsaShort.json")
+                .then(res => res.json())
+                .then(items => {
+                    quizInfo = items.map((item, index) => {
+                        const formattedQuiz = {
+                            infoDate: item.time,
+                            infoQuiestion: item.question,
+                            infoDesc: item.question_desc,
+                            infoAnswer: item.correct_answer
+                        }
+                        return formattedQuiz;
+                    });
+                    updateQuiz(currentIndex);
+                });
+        }
+
+
+        // 문제 출력
+        const updateQuiz = (index) => {
+            let quizArray = `
+                    <div class="quiz">
+                        <div class="quiz__header">${quizInfo[index].infoDate}</div>
+                        <div class="quiz__main">
+                            <div class="quiz__question">${index + 1}. ${quizInfo[index].infoQuiestion}</div>
+                            <div class="quiz__answer none">${quizInfo[index].infoAnswer}</div>
+                            ${quizInfo[index].infoDesc ? `<div class="quiz__desc">${quizInfo[index].infoDesc}</div>` : ''}
+                            <input type="text" class="input__style" name="input" id="input-${index}">
+                        </div>
+                        <div class="quiz__footer">
+                            <button class="quiz__confirm">정답 확인하기</button>
+                            <button class="quiz__next none">다음 문제</button>
+                    </div>
+                    </div>
+                `;
+            ;
+            quizWrap.innerHTML = quizArray;
+
+
+            // 선택자
+            const quizConfirm = quizWrap.querySelector(".quiz__confirm");
+            const quizDesc = quizWrap.querySelector(".quiz__desc");
+            const quizNext = quizWrap.querySelector(".quiz__next");
+
+            // 정답 확인 버튼
+            quizConfirm.addEventListener("click", () => {
+                checkAnswer();
+                quizConfirm.classList.add("none");      // 정답 버튼 삭제
+                quizNext.classList.remove("none");      // 다음 버튼 삭제
+            });
+
+            // 다음 문제 버튼 
+            quizNext.addEventListener("click", () => {
+                if (currentIndex < quizInfo.length - 1) {
+                    quizNext.classList.add("none");         // 다음 버튼 삭제
+                    quizConfirm.classList.remove("none");      // 정답 버튼 추가
+                    currentIndex++
+                    fetchQuiz(currentIndex);
+                } else {
+                    alret("퀴즈가 종료되었습니다.");
+                }
+            });
+        
+        }
+        const checkAnswer = () => {
+            const userInput = document.getElementById(`input-${currentIndex}`);
+            const inputValue = userInput.value;        // 사용자가 입력한 정답
+            console.log(inputValue)
+
+            if (!inputValue) {
+                alert("답안을 입력하세요.");
+            }
+            const corretAnswer = quizInfo[currentIndex].infoAnswer;     // 정답지의 정답
+            const quizElement = quizWrap.querySelector(".quiz");
+            const answerElement = quizWrap.querySelector(".quiz__answer");
+
+            if (inputValue === corretAnswer) {
+                quizElement.classList.add("good");
+            } else {
+                quizElement.classList.add("bad");
+            }
+        }
+
+        // 페이지가 로드된 후 실행
+        document.addEventListener("DOMContentLoaded", () => {
+            fetchQuiz(currentIndex);
+        })
+
+    </script>
+</body>
+
+</html>
