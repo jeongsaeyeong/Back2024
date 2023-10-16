@@ -1110,7 +1110,7 @@ body::after {
     width: 100%;
     border-radius: 5px;
     cursor: pointer;
-    color: #444;
+    color: #000000;
     position: relative;
 }
 .cbt__choices label span::before {
@@ -1122,7 +1122,7 @@ body::after {
     border-radius: 50%;
     background: #fff;
     margin-right: 15px;
-    box-shadow: inset 0px 0px 0px 1px #000;
+    box-shadow: inset 0px 0px 0px 1px #ff9595;
     transition: all 0.25s;
     text-align: center;
     font-size: 12px;
@@ -1142,10 +1142,10 @@ body::after {
     content: '4';
 } 
 .cbt__choices label input:checked + span {
-    color: #000;
+    color: #861931;
 }
 .cbt__choices input:checked + label span::before {
-    box-shadow: inset 0px 0px 0px 10px #000;
+    box-shadow: inset 0px 0px 0px 10px #ff8ca9;
     color: #fff;
 }
 .cbt__choices label.good span::before {
@@ -1189,6 +1189,43 @@ body::after {
     border-radius: 40px;
     text-align: center;
     cursor: pointer;
+}
+.cbt__giveup {
+    margin-top: 10px;
+    background-color: #912e54;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 40px;
+    text-align: center;
+    cursor: pointer;
+}
+.cbt__again {
+    margin-top: 10px;
+    background-color: #d3427a;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 40px;
+    text-align: center;
+    cursor: pointer;
+}
+.cbt__answer {
+    border: 2px solid #ffadc7;
+    padding: 10px 20px 10px 38px;
+    color: #36282d;
+    font-size: 14px;
+    margin-top: 10px;
+    line-height: 1.6;
+    position: relative;
+}
+.cbt__answer::before {
+    content: '';
+    position: absolute;
+    left: 11px;
+    top: 10px;
+    width: 20px;
+    height: 20px;
+    background-image: url("data:image/svg+xml,%0A%3Csvg xmlns='http://www.w3.org/2000/svg' width='192' height='192' fill='%23412E91' viewBox='0 0 256 256'%3E%3Crect width='256' height='256' fill='none'%3E%3C/rect%3E%3Cline x1='96' y1='128' x2='160' y2='128' fill='none' stroke='%23412E91' stroke-linecap='round' stroke-linejoin='round' stroke-width='16'%3E%3C/line%3E%3Cline x1='96' y1='160' x2='160' y2='160' fill='none' stroke='%23412E91' stroke-linecap='round' stroke-linejoin='round' stroke-width='16'%3E%3C/line%3E%3Cpath d='M56,40H200a8,8,0,0,1,8,8V200a24,24,0,0,1-24,24H72a24,24,0,0,1-24-24V48A8,8,0,0,1,56,40Z' fill='none' stroke='%23412E91' stroke-linecap='round' stroke-linejoin='round' stroke-width='16'%3E%3C/path%3E%3Cline x1='80' y1='24' x2='80' y2='56' fill='none' stroke='%23412E91' stroke-linecap='round' stroke-linejoin='round' stroke-width='16'%3E%3C/line%3E%3Cline x1='128' y1='24' x2='128' y2='56' fill='none' stroke='%23412E91' stroke-linecap='round' stroke-linejoin='round' stroke-width='16'%3E%3C/line%3E%3Cline x1='176' y1='24' x2='176' y2='56' fill='none' stroke='%23412E91' stroke-linecap='round' stroke-linejoin='round' stroke-width='16'%3E%3C/line%3E%3C/svg%3E");
+    background-size: cover;
 }
 .cbt__desc {
     border: 1px solid #ffe3ec;
@@ -1239,16 +1276,17 @@ body::after {
 .cbt__omr .omr label {
     text-align: center;
     width: 28px;
-    height: 8px;
+    height: 10px;
     cursor: pointer;
     box-shadow: 0 0 0 1px #633b42;
+    border-radius: 10px;
     line-height: 0.5;
     font-weight: 900;
     position: relative;
 }
 .cbt__omr .omr label:after {
     content: '';
-    background-color: #aa7082;
+    background-color: #e7a7bb;
     display: block;
     position: absolute;
     top: 0;
@@ -1256,6 +1294,9 @@ body::after {
     width: 0;
     height: 100%;
     transition: width 0.1s linear;
+}
+.cbt__omr .omr .label-inner {
+    color: #631b32
 }
 .cbt__omr .omr input[type=radio]:checked + label::after {
     width: 100%;
@@ -1265,6 +1306,65 @@ body::after {
     background-color: #fff;
     padding: 3px;
     color: #682732;
+}
+.cbt__question__desc {
+    border: 1px solid #eaeaea;
+    padding: 10px;
+    margin-top: 10px;
+    color: #666;
+}
+.cbt__question__img {
+    border: 1px solid #eaeaea;
+    margin-top: 10px;
+    padding: 20px;
+    text-align: center;
+}
+.cbt__question__img img {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.cbt.good {
+    position: relative;
+}
+.cbt.good::before {
+    content: '';
+    width: 100px;
+    height: 100px;
+    border: 10px solid red;
+    border-radius: 50%;
+    position: absolute;
+    left: 20px; 
+    top: 20px;
+    z-index: 100;
+}
+.cbt.bad {
+    position: relative;
+}
+.cbt.bad::before {
+    content: '';
+    width: 150px;
+    height: 10px;
+    background-color: red;
+    position: absolute;
+    left: 0;
+    top: 80px;
+    border-radius: 30px;
+    transform: rotate(45deg);
+    z-index: 100;
+}
+.cbt.bad::after {
+    content: '';
+    width: 150px;
+    height: 10px;
+    background-color: red;
+    position: absolute;
+    left: 0;
+    top: 80px;
+    border-radius: 30px;
+    transform: rotate(-45deg);
+    z-index: 100;
 }
 
 @media (max-width: 1200px){

@@ -1,0 +1,29 @@
+:root {
+    --main-nanum: "NanumSquareNeo";
+    --main-Rebecca: "Rebecca";
+
+    --primary-color: #F3DEC6;
+    --primary-color100: #e2bc91;
+    --primary-color200: #f0d2b0;
+    --primary-color300: #ffbb84;
+
+    --black: #000;
+    --white: #fff;
+    --red: #c21d1d;
+
+    --black100: #333;
+    --black200: #555;
+    --black300: #777;
+    --black400: #999;
+    --black500: #d7d7d7;
+
+    font-size: var(--font__size);
+    line-height: 1.5;
+    font-weight: 400;
+}
+
+@media (max-width: 800px){
+    :root {
+    font-size: 14px;
+    }
+}

@@ -1713,6 +1713,18 @@
         // }
 
         // 문제 출력
+
+        // 
+        const jsonString = '{"name: "webs":"webs", "age", :"30"}';
+        const jsonObject = JSON.parse(jsonString);
+        console.log(jsonObject.name);
+
+        // 객체를 json 데이터로 변환
+        const person = {name: "webs", age:30};
+        const jsonPerson = JSON.stringify(person);
+        console.log(jsonPerson);
+
+        //  '{"name: "webs":"webs", "age", :"30"}'
     </script>
 </body>
 </html>
