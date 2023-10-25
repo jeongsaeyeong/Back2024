@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -44,33 +45,34 @@
             <section id="main_contents">
                 <div class="best_list boxStyle roundCorner shaDow ">
                     <div class="board">
-                        <div class="board_form">
-                            <form action="board_writeSave.php" name="blog_writeSave" method="post" enctype="multipart/form-data">
+                        <div class="board_form ">
+                            <form action="board_wirteSave.php" method="post"  name="blogWriteSave" enctype="multipart/form-data">
                                 <legend class="blind"></legend>
                                 <div class="form_box">
-                                    <div class="board_title">
-                                        <h2>신청하고 싶은 술을 작성해주세요.</h2>
+                                    <div class="board_btn sideBtn">
+                                        <h2>신청하고 싶은 술을 말해주세요.</h2>
                                     </div>
                                     <div class="board_text">
-                                        <div class="board_post">
-                                            <label for="boardFile" class="blind link inputStyle mb20"></label>
-                                            <!-- accept=".jpg, .jpeg, .png, .gif, .webp" -->
-                                            <input type="file" id="boardFile" name="boardFile" class="fa-regular input_img">
-                                            <p>jpg, gif, png, webp 파일만 넣을 수 있습니다. 이미지 용량은 1MB를 넘길 수 없습니다.</p>
+                                        <div class="post">
+                                            <ul class="link inputStyle mb20">
+                                                 <li class="active"><i class="fa-regular fa-image"></i><a href="#">Image</a></li>
+                                                <!--    <li class="active"><i class="fa-regular fa-file-lines"></i><a href="#">Post</a></li>
+                                                <li><i class="fa-solid fa-video"></i><a href="#"> Video</a></li>
+                                                <li><i class="fa-solid fa-link"></i><a href="#">Link</a></li>
+                                                <li><i class="fa-solid fa-location-dot"></i><a href="#">Place</a></li> -->
+                                            </ul>
                                         </div>
                                         <div class="board_title">
-                                            <label for="boardTitle"></label>
-                                            <textarea type="text" id="boardTitle" name="boardTitle" cols="50" rows="1"
+                                            <label for="boardContents"></label>
+                                            <textarea id="boardContents" name="boardContents" cols="50" rows="1"
                                                 class="board_input_title inputStyle placeholder"
                                                 placeholder="제목을 작성해주세요"></textarea>
                                         </div>
-                                        <div class="board_item">
-                                            <div class="board_content">
-                                                <label for="boardContents"></label>
-                                                <textarea id="boardContents" name="boardContents" cols="50" rows="8"
-                                                    class="board_input_contents inputStyle placeholder"
-                                                    placeholder="원하는 술을 신청해주세요"></textarea>
-                                            </div>
+                                        <div class="board_content">
+                                            <label for="boardContents"></label>
+                                            <textarea id="boardContents" name="boardContents" cols="50" rows="8"
+                                                class="board_input_contents inputStyle placeholder"
+                                                placeholder="원하는 술을 신청해주세요"></textarea>
                                         </div>
                                         <div class="create">
                                             <button type="submit" class="sideBtn mt50">술 신청하기</button>
@@ -124,18 +126,6 @@
         <!-- contents_area end -->
     </div>
     <!-- wrapper end -->
-
-    <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
-    <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/translations/ko.js"></script>
-    <script>
-        ClassicEditor
-            .create(document.querySelector('.board_content'), {
-                language: 'ko' 
-            })
-            .catch(error => {
-                console.error(error);
-            });
-    </script>
 </body>
 
 </html>
