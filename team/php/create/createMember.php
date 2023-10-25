@@ -10,7 +10,7 @@
     $sql .= "youNick varchar(5) DEFAULT NULL,";
     $sql .= "youEmail varchar(40) DEFAULT NULL,";
     $sql .= "youBirth int(8) NOT NULL,";
-    $sql .= "youGps varchar(50) NOT NULL,";
+    $sql .= "youAddress varchar(80) NOT NULL,";
     $sql .= "regTime int(20) NOT NULL,";
     $sql .= "PRIMARY KEY(myMemberID)";
     $sql .= ") charset=utf8;"; 

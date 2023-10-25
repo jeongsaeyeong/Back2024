@@ -6,10 +6,12 @@
     $youName = mysqli_real_escape_string($connect, $_POST['youName']);
     $youNick = mysqli_real_escape_string($connect, $_POST['youNick']);
     $youEmail = mysqli_real_escape_string($connect, $_POST['youEmail']);
+    $youAddress = mysqli_real_escape_string($connect, $_POST['youAddress1']."*".$_POST['youAddress2']."*".$_POST['youAddress3']);
+
     $youBirth = mysqli_real_escape_string($connect, $_POST['youBirth']);
     $regTime = time();
 
-    $sql = "INSERT INTO drinkMember(youId, youPass, youName, youNick, youEmail, youBirth, regTime) VALUES ('$youId', '$youPass', '$youName', '$youNick', '$youEmail', '$youBirth', $regTime)";
+    $sql = "INSERT INTO drinkMember(youId, youPass, youName, youNick, youEmail, youBirth, youAddress, regTime) VALUES ('$youId', '$youPass', '$youName', '$youNick', '$youEmail', '$youBirth', '$youAddress', $regTime)";
     $connect -> query($sql);
 
     // 데이터 베이스 연결 닫기

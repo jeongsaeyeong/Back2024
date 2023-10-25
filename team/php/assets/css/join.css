@@ -113,7 +113,7 @@
     margin-top: 10px;
 }
 .btn_01 {
-    margin-right: 4px;
+    margin-left: 10px;
 }
 
 .join__btn {
@@ -132,8 +132,10 @@
     margin-right: 10px;
     border: 0;
     cursor: pointer;
+    margin-bottom: 10px;
 }
 .check__msg {
+    margin-top: 4px;
     font-size: 14px;
     color: var(--red);
 }
@@ -188,4 +190,22 @@
 .required::after {
     content: ' *';
     color: #a82c2c;
+}
+
+/* layer */
+
+#layer {
+    position: fixed;
+    overflow: hidden;
+    z-index: 1;
+    -webkit-overflow-scrolling: touch;
+}
+#layer img {
+    position: absolute;
+    right: -3px;
+    top: -3px;
+    width: 20px;
+    height: 20px;
+    z-index: 1;
+    cursor: pointer;
 }

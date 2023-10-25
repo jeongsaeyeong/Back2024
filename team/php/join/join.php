@@ -29,7 +29,7 @@
                                 <label for="youId" class="required">아이디</label>
                                 <input type="text" minlength="6" maxlength="20"  name="youId" placeholder="아이디 입력(6~20)" id="youId">
                                 <div class="check__btn button__style" onclick="idChecking()">중복 검사</div>
-                                <p class="check__msg" id="youIdComment"></p>
+                                <p class="check__msg btn_01" id="youIdComment"></p>
                             </div>
                             <div class="box">
                                 <label for="youPass" class="required">비밀번호</label>
@@ -50,19 +50,20 @@
                             <div class="check box">
                                 <label for="youNick" class="required">닉네임</label>
                                 <input type="text" minlength="2" maxlength="5" name="youNick" placeholder="닉네임 입력(문자 2~5)" id="youNick">
-                                <div class="check__btn button__style" onclick="NickChecking()">중복 검사</div>
-                                <p class="check__msg" id="youNickComment"></p>
+                                <div class="check__btn button__style " onclick="NickChecking()">중복 검사</div>
+                                <p class="check__msg btn_01" id="youNickComment"></p>
                             </div>
                             <div class="check box">
                                 <label for="youEmail" class="required">이메일</label>
                                 <input type="email"  name="youEmail" placeholder="이메일 입력" id="youEmail">
                                 <div class="check__btn button__style" onclick="emailChecking()">중복 검사</div>
+                                <p class="check__msg btn_01" id="youEmailComment"></p>
                             </div>
                             <div>
                                 <label for="youAddress1" class="required">주소</label>
                                 <div class="check youAddress1">
                                     <input type="text" id="youAddress1" name="youAddress1" placeholder="우편번호" class="input__style">
-                                    <div class="check__btn btn_01"  id="addressCheck">주소 찾기</div>
+                                    <div class="check__btn"  id="addressCheck">주소 찾기</div>
                                 </div>
                                 <label for="youAddress2" class="blind"></label>
                                 <input type="text" id="youAddress2" name="youAddress2" placeholder="주소" class="input__style">
