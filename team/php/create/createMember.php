@@ -11,6 +11,8 @@
     $sql .= "youEmail varchar(40) DEFAULT NULL,";
     $sql .= "youBirth int(8) NOT NULL,";
     $sql .= "youAddress varchar(80) NOT NULL,";
+    $sql .= "youImgFile varchar(100) DEFAULT NULL,";
+    $sql .= "youImgSize varchar(100) DEFAULT NULL,";
     $sql .= "regTime int(20) NOT NULL,";
     $sql .= "PRIMARY KEY(myMemberID)";
     $sql .= ") charset=utf8;"; 

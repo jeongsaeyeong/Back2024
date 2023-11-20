@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JUST 쇼핑몰(ㅋㅋ)</title>
+    <!-- css -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- script -->
+    <script src="script/jquery.min.js"></script>
+    <script src="script/script.js"></script>
+</head>
+
+<body>
+    <div id="wrap">
+        <main id="main">
+            <header id="header">
+                <div class="header__logo">
+                    <h1><a href="">로고</a></h1>
+                </div>
+                <nav class="nav">
+                    <ul>
+                        <li>
+                            <a href="#">탑</a>
+                            <ul class="submenu">
+                                <li><a href="">블라우스</a></li>
+                                <li><a href="">티</a></li>
+                                <li><a href="">셔츠</a></li>
+                                <li><a href="">니트</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">아우터</a>
+                            <ul class="submenu">
+                                <li><a href="">자켓</a></li>
+                                <li><a href="">코트</a></li>
+                                <li><a href="">가디건</a></li>
+                                <li><a href="">머플러</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">팬츠</a>
+                            <ul class="submenu">
+                                <li><a href="">청바지</a></li>
+                                <li><a href="">짧은바지</a></li>
+                                <li><a href="">긴바지</a></li>
+                                <li><a href="">레깅스</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">악세서리</a>
+                            <ul class="submenu">
+                                <li><a href="">귀고리</a></li>
+                                <li><a href="">목걸이</a></li>
+                                <li><a href="">반지</a></li>
+                                <li><a href="">팔찌</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </header>
+            <!-- Header -->
+
+            <div id="slider">
+                <div class="sliderWrap">
+                    <div class="slider s1">
+                        <a href="#"><img src="images/slide 01.jpg" alt="Just 쇼핑몰"></a>
+                    </div>
+                    <div class="slider s2">
+                        <a href="#"><img src="images/slide 2.jpg" alt="Just 쇼핑몰"></a>
+                    </div>
+                    <div class="slider s3">
+                        <a href="#"><img src="images/slide 3.jpg" alt="Just 쇼핑몰"></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- slide -->
+
+            <div id="contents">
+
+                <div class="content__wrap">
+                    <section class="content__tab">
+                        <div class="tab-menu">
+                            <div class="tab-btn">
+                                <ul>
+                                    <li class="active"><a href="#">공지</a></li>
+                                    <li><a href="#">갤러리</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="tab-cont">
+                            <div class="tab_text">
+                                <span>공지1<br>공지1<br>공지1<br>공지1</span>
+                            </div>
+                            <div class="gallery">
+                                <ul>
+                                    <li><a href=""></a><img src="images/gallery 1.jpg" alt=""></li>
+                                    <li><a href=""></a><img src="images/gallery 2.jpg" alt=""></li>
+                                    <li><a href=""></a><img src="images/gallery 3.jpg" alt=""></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <!-- content__wrap -->
+
+                <div class="banner"></div>
+                <!-- banner -->
+
+                <div class="link">
+                    <ul>
+                        <li><a href="#">바로가기</a></li>
+                    </ul>
+                </div>
+                <!-- link -->
+
+            </div>
+            <!-- contents -->
+
+            <footer id="footer">
+                <div class="footer__logo"><span>로고</span></div>
+                <div class="copyright"><span>서울 특별시</span></div>
+                <div class="sns"><span>sns</span></div>
+            </footer>
+            <!-- footer -->
+
+
+            <div class="popup-view">
+                <h3>타이틀</h3>
+                <p>
+                    안내사항
+                </p>
+                <a href="#" class="popup-close">닫기</a>
+            </div>
+
+        </main>
+    </div>
+    <script>
+        window.onload = function () {
+
+            const tabBtn = document.querySelectorAll(".tab-btn ul li");
+            const tabCont = document.querySelectorAll(".tab-cont > div");
+
+            tabCont.forEach((el) => { el.style.display = "none" });
+            tabCont[0].style.display = "black";
+
+            tabBtn.forEach((tab, index) => {
+                tab.addEventListener("click", () => {
+                    tabBtn.forEach((el) => { el.classList.remove("active") });
+                    tab.classList.add("active");
+
+                    tabCont.forEach((cont) => { cont.style.display = "none" });
+                    tabCont[index].style.display = "block";
+                });
+            });
+        }
+    </script>
+</body>
+
+</html>

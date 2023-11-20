@@ -261,7 +261,7 @@
     margin-top: 10px;
 }
 .review_wrap li {
-    padding: 1rem;
+    padding: 1rem 0.5rem;
     font-size: 1rem;
     color: var(--black);
     transition: all 0.2s;
@@ -288,20 +288,25 @@
     text-align: left;
     width: 75%;
     line-height: 1.5;
-    padding: 0 0.5rem;
+    padding: 0 1rem;
     color: var(--black100);
 }
-.review_wrap li .review_text button {
-    width: 10%;
+.review_wrap li .review_text a{
     color: var(--black300);
-    font-size: 0.85rem;
+    text-wrap: nowrap;
+    font-size: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 0 5px;
     cursor: pointer;
     text-align: right;
-    transition: all 0.2s;
 }
-.review_wrap li .review_text button:hover {
-    font-weight: 700;
-    color: var(--red);
+.review_wrap li .review_text a.modify {
+    margin-right: 3px;
+}
+.review_wrap li .review_text a:hover {
+    border-color: var(--mcolor);
+    color: var(--mcolor);
 }
 
 /* _____________________________review_add_____________________________ */

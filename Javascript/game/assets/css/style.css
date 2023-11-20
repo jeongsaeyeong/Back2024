@@ -1,0 +1,87 @@
+#wrap {
+    width: 100%;
+    height: 100vh;
+}
+.bg01 {
+    background-image: url(../img/bg03.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.icon__menu a img {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 30%;
+    transition: all 0.3s;
+}
+.icon__menu a img:hover {
+    left: 10px;
+    bottom: 10px;
+}
+
+/* musicWrap */
+#musicWrap {
+    font-family: 'Cafe24ClassicType';
+    position: absolute;
+    right: 8%;
+    top: 10%;
+    width: 350px;
+    height: 600px;
+    background-color: rgba(0, 0, 0, 0.87);
+    border-radius: 15px;
+}
+.music__inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.music__header h2 {
+    width: 100%;
+    font-size: 24px;
+    color: #000;
+    text-align: center;
+    padding-top: 30px;
+    margin-bottom: 30px;
+    background-color: #EECB91;
+}
+
+/* music__contents */
+
+.music__contents {
+    font-family: 'NanumSquareNeo';
+    width: 100%;
+    color: #fff;
+    text-align: center;
+    font-weight: 300;
+}
+.music__contents .musiv__view {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+.music__contents .musiv__view a img {
+    margin-top: 20px;
+    height: 250px;
+    background-color: #fff;
+    border: 2px solid #f7e5c8;
+    border-radius: 10px;
+    position: relative;
+}
+.music__contents .musiv__view .music__circle {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 70px;
+    height: 70px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.87);
+    border: 6px solid #EECB91;
+}
+.music__contents .music__title {
+    margin: 20px 0;
+    font-size: 20px;
+    
+}

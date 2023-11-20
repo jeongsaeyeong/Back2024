@@ -1,15 +1,15 @@
 <?php
     include "../connect/connect.php";
-    
-    // $memberId = $_SESSION['memberId'];
-    // $boardAuthor = $_SESSION['youName'];
+    include "../connect/session.php";
 
-    $memberId = 1;
-    $boardAuthor = "가나다";
+    $memberId = $_SESSION['myMemberID'];
+    $boardAuthor = $_SESSION['youName'];
+    $boardCategory = $_POST['boardCategory'];
     $boardTitle = $_POST['boardTitle'];
-    $boardContents = nl2br($_POST['boardContents']);
+    $boardContents = $_POST['boardContents'];
 
-    $boardView = 1;
+    $boardView = 0;
+    $boardLike = 0;
     $boardComment = 0;
     $boardRegTime = time();
     $boardDelete = 1;
@@ -28,17 +28,13 @@
         $fileTypeExtension = explode("/", $boardImgType);
         $fileType = $fileTypeExtension[0];  //image
         $fileExtension = $fileTypeExtension[1];  //jpeg
-        echo $fileTypeExtension;
-        echo $fileType;
-        echo $fileExtension;
 
         // 이미지 타입 확인
         if($fileType === "image"){
             if($fileExtension === "jpg" || $fileExtension === "jpeg" || $fileExtension === "png" || $fileExtension === "gif" || $fileExtension === "webp"){
                 $boardImgDir = "../assets/board/";
                 $boardImgName = "Img_".time().rand(1,99999)."."."{$fileExtension}";
-                $sql = "INSERT INTO drinkboard(memberId, boardTitle, boardContents, boardAuthor, boardRegTime, boardView, boardComment, boardImgFile, boardImgSize, boardDelete) VALUE ('$memberId', '$boardTitle', '$boardContents', '$boardAuthor', '$boardRegTime', '$boardView', '$boardComment', '$boardImgFile', '$boardImgSize', '$boardDelete')";
-                echo "들어감 1";
+                $sql = "INSERT INTO drinkboard(memberId, boardCategory, boardTitle, boardContents, boardAuthor, boardRegTime, boardView, boardLike, boardComment, boardImgFile, boardImgSize, boardDelete) VALUES ('$memberId', '$boardCategory', '$boardTitle', '$boardContents', '$boardAuthor', '$boardRegTime', '$boardView', '$boardLike', '$boardComment', '$boardImgName', '$boardImgSize', '$boardDelete')";
             } else {
                 echo "<script>alert('이미지 파일 형식이 아닙니다.')</script>";
             }
@@ -48,8 +44,8 @@
         }
     } else {
         echo "<script>alert('이미지 파일을 첨부하지 않았습니다.')</script>";
-        $sql = "INSERT INTO drinkboard(memberId, boardTitle, boardContents, boardAuthor, boardRegTime, boardView, boardComment, boardImgFile, boardImgSize, boardDelete) VALUE ('$memberId', '$boardTitle', '$boardContents', '$boardAuthor', '$boardRegTime', '$boardView', '$boardComment', '$boardImgFile', '$boardImgSize', '$boardDelete')";
-        echo "들어감 2";
+        $sql = "INSERT INTO drinkboard(memberId, boardCategory, boardTitle, boardContents, boardAuthor, boardRegTime, boardView, boardLike, boardComment, boardImgFile, boardImgSize, boardDelete) VALUES ('$memberId', '$boardCategory', '$boardTitle', '$boardContents', '$boardAuthor', '$boardRegTime', '$boardView', '$boardLike', '$boardComment', '$boardImgName', '$boardImgSize', '$boardDelete')";
+        echo "<script>window.location.href='board.php';</script>";
     }
 
     // 이미지 사이즈 확인
@@ -62,5 +58,6 @@
 
     if($result) {
         echo "<script>alert('저장이 완료되었습니다.')</script>";
+        echo "<script>window.location.href='board.php';</script>";
     }
 ?>

@@ -33,13 +33,13 @@
                             </div>
                             <div class="box">
                                 <label for="youPass" class="required">비밀번호</label>
-                                <input type="text" minlength="8" maxlength="20" name="youPass" placeholder="비밀번호 입력(문자, 숫자, 특수문자 포함 8~20)"
+                                <input type="password" minlength="8" maxlength="20" name="youPass" placeholder="비밀번호 입력(문자, 숫자, 특수문자 포함 8~20)"
                                     id="youPass">
                                 <p class="check__msg" id="youPassComment"></p>
                             </div>
                             <div class="box">
                                 <label for="youPassre" class="required">비밀번호 확인</label>
-                                <input type="text" minlength="8" maxlength="20" name="youPassre" placeholder="비밀번호 재입력" id="youPassre">
+                                <input type="password" minlength="8" maxlength="20" name="youPassre" placeholder="비밀번호 재입력" id="youPassre">
                                 <p class="check__msg" id="youPassreComment"></p>
                             </div>
                             <div class="box">
@@ -79,7 +79,6 @@
                         </div>
                     <div class="join__btn">
                         <button class="check__btn button__style">가입하기</button>
-                        
                     </div>
                 </form>
             </div>

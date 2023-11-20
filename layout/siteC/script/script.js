@@ -1,5 +1,4 @@
 $(function(){
-    // 슬라이드 : 페이드 효과
     let currentIndex = 0;
     $(".sliderWrap").append($(".slider").first().clone(true)); //첫번째 이미지를 복사해서 마지막에 추가
 

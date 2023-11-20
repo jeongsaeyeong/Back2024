@@ -1,38 +1,98 @@
+<?php
+    include "../connect/connect.php";
+    include "../connect/session.php";
+    include "../connect/sessionCheck.php";
+
+    // 보드 아이디 
+    if(isset($_GET['boardId'])){
+        $boardId = $_GET['boardId'];
+    } else {
+        Header("Location: board.php");
+    }
+
+    // 멤버 아이디
+    if(isset($_SESSION['myMemberID'])){
+        $myMemberID = $_SESSION['myMemberID'];
+    } else {
+        Header("Location: ../main/main.php");
+    }
+
+    // 내 정보 가져오기
+    $memberSql = "SELECT * FROM drinkMember WHERE myMemberID = '$myMemberID'";
+    $memberResult = $connect -> query($memberSql);
+    $memberInfo = $memberResult -> fetch_array(MYSQLI_ASSOC);
+
+    // View 증가 
+    $visitedKey = 'board_visited_' . $boardId;
+    if (!isset($_SESSION[$visitedKey])) {
+        $updateViewSql = "UPDATE drinkboard SET boardView = boardView + 1 WHERE boardId = '$boardId'";
+        $connect->query($updateViewSql);
+        $_SESSION[$visitedKey] = true;
+    }
+
+    // 블로그 정보 가져오기
+    $boardSql = "SELECT * FROM drinkboard WHERE boardId = '$boardId'";
+    $boardResult = $connect -> query($boardSql);
+    $boardInfo = $boardResult -> fetch_array(MYSQLI_ASSOC);
+
+    // 이전글 가져오기 
+    $prevboardSql = "SELECT * FROM drinkboard WHERE boardId < '$boardId' ORDER BY boardId DESC LIMIT 1";
+    $prevboardSqlResult = $connect -> query($prevboardSql);
+    $preboardInfo = $prevboardSqlResult -> fetch_array(MYSQLI_ASSOC);
+
+    // 다음글 가져오기 
+    $nextboardSql = "SELECT * FROM drinkboard WHERE boardId > '$boardId' ORDER BY boardId ASC LIMIT 1";
+    $nextboardSqlResult = $connect -> query($nextboardSql);
+    $nextboardInfo = $nextboardSqlResult -> fetch_array(MYSQLI_ASSOC);
+
+    // 댓글 정보 가져오기 
+    $reviewSql = "SELECT * FROM drinkreview WHERE boardId = '$boardId' AND reviewDelete = '1' ORDER BY reviewId ASC";
+    $reviewResult = $connect -> query($reviewSql);
+    $reviewInfo = $reviewResult -> fetch_array(MYSQLI_ASSOC);
+
+    // 좋아요 정보 가져오기
+    $likesSql = "SELECT * FROM boardlikes WHERE myMemberID = '$myMemberID' AND boardId = '$boardId'";
+    $likeResult = $connect -> query($likesSql);
+    $likeInfo = $likeResult -> fetch_array(MYSQLI_ASSOC);
+
+    // 전 게시글 정보
+    $allboardsql = "SELECT * FROM drinkboard WHERE boardDelete = 1 AND boardCategory = '커뮤니티' ORDER BY boardLike DESC LIMIT 3";
+    $allboardInfo = $connect -> query($allboardsql);
+?>
+
 <!DOCTYPE html>
 <html lang="ko">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <title>취중진담</title>
+    <a href="https://www.flaticon.com/kr/free-icons/" title="심장 아이콘"></a>
     <!-- meta -->
     <meta name="author" content="취중진담">
     <meta name="description" content="프론트엔드 개발자 포트폴리오 조별과제 사이트입니다.">
     <meta name="keywords" content="웹퍼블리셔,프론트엔드, php, 포트폴리오, 커뮤니티, 술, publisher, css3, html, markup, design">
-    
+
     <!-- favicon -->
-    <link rel="icon" href="assets/favicon/favicon.ico" type="image/x-icon">
-    
-    <!-- swiper / 술 랭킹-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
-    
+    <link rel="icon" href="../assets/favicon/favicon.ico" type="image/x-icon">
+
     <!-- fontasome -->
     <script src="https://kit.fontawesome.com/2cf6c5f82a.js" crossorigin="anonymous"></script>
-    
+
+    <!-- swiper / 술 랭킹-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+
     <!-- css -->
     <link href="../assets/css/reset.css" rel="stylesheet" />
     <link href="../assets/css/fonts.css" rel="stylesheet" />
     <link href="../assets/css/style.css" rel="stylesheet" />
     <link href="../assets/css/common.css" rel="stylesheet" />
-    <link href="../assets/css/index.css" rel="stylesheet" />
-    <link href="../assets/css/selectOption.css" rel="stylesheet" />
-    <link href="../assets/css/board.css" rel="stylesheet">
-    <link href="../assets/css/boardView.css" rel="stylesheet" >
-    
+    <link href="../assets/css/alcohol.css" rel="stylesheet" />
+    <link href="../assets/css/board.css" rel="stylesheet" />
+    <link href="../assets/css/boardView.css" rel="stylesheet" />
+
     <!-- js -->
     <script src="../assets/js/scrollEvent.js"></script>
-
-    <title>취중진담</title>
 </head>
 
 <body>
@@ -48,29 +108,117 @@
 
         <main id="contents_area">
             <section id="main_contents">
-                <div class="best_list boxStyle roundCorner shaDow mb50">
+                <div class="board_view boxStyle roundCorner shaDow">
+
                     <h4><a href="/">인기 게시글</a><span>HOT</span></h4>
 
                     <div class="view_wrap">
-                        <h5>글 제목</h5>
+                        <div class="view_top">
+                            <h5><?=$boardInfo['boardTitle']?></h5>
+                        </div>
+
                         <div class="view_box">
-                           
                             <div class="user_info not_user">
-                                <p><i class="fa-solid fa-icons"></i></p>
                                 <div class="user_info_box">
-                                    <p><em> 홍길동님이</em> 쓴 게시글 더보기 ></p>
-                                    <ul>
-                                        <li><a href="#">좋아요</a></li>
-                                        <li><a href="#">댓글</a></li>
-                                        <li><a href="#">수정하기</a></li>
-                                    </ul>
+                                    <p><em><?=$boardInfo['boardAuthor']?>님의 </em>게시글 더보기 ></p>
                                 </div>
                             </div>
-                            <div class="back_list"><a href="/">목록으로 돌아가기</a></div>
+                            <div class="view_info">
+                                <div class="info_list">
+<?php 
+    if($likeInfo['likeDelete'] == 1){ ?>
+        <i class="fa-solid green fa-heart"></i>
+<?php } else { ?>
+        <i class="fa-solid white fa-heart"></i>
+<?php } ?>
+                                    <div class="view_num">추천수: <em><?=$boardInfo['boardLike']?></em></div>
+                                    <div class="view_num">조회수: <em><?=$boardInfo['boardView']?></em></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="board_desc">
+                        <div class="board_detail">
+                            <em class="scrollStyle">
+                                <?=$boardInfo['boardContents']?>
+                            </em>
+
                         </div>
                     </div>
+                    <div class="comment_summary">
+                        <div class="button_list">
+                            <button class="delete" onclick="confirmDelete(<?=$boardId?>)">삭제하기</button>
+                            <button class="modify" onclick="confirmModify(<?=$boardId?>)">수정하기</button>
+                            <button class="good">추천하기</button>
+                        </div>
+                    </div>
+                </div>
 
 
+                <!-- 작성된 후기 없음 -->
+                <!-- <div class="alcohol_review boxStyle roundCorner shaDow">
+                    <h4>후기 <span>0</span></h4>
+                    <ul class="review_wrap">
+                        <li>
+                            <div class="review_text">
+                                <span>아직 작성 된 후기가 없습니다.</span>                                
+                            </div>
+                        </li>
+                    </ul>
+                </div> -->
+
+                <div class="alcohol_review boxStyle roundCorner shaDow" id="view_comment">
+                    <h4>후기 <span>0</span>개</h4>
+                        <ul class="review_wrap">
+                    <?php 
+if($reviewResult->num_rows == 0) { ?>
+    <li>
+        <div class="review_text">
+            <strong class="textCut"></strong>
+            <p>댓글이 아무것도 없습니다.</p>
+        </div>
+    </li>
+
+<?php } else {  
+    foreach($reviewResult as $review) { ?>   
+        <li>
+            <div class="review_text count">
+                <strong class="textCut"><?=$review['reviewName']?></strong>
+                <p><?=$review['reviewMsg']?></p>
+                <a href="#" class="delete" data-review-id="<?=$review['reviewId']?>">삭제</a>
+                <a href="#" class="modify" data-review-id="<?=$review['reviewId']?>">수정</a>
+            </div>
+        </li>
+    <?php } // foreach 닫음
+} // else 닫음?>
+                     </ul> 
+                </div>
+                <div class="boxStyle roundCorner shaDow">
+                    <h4>후기 작성하기</h4>
+                    <div class="review_add">
+                        <textarea  type="text" class="scrollStyle" name="review_write" id="review_write"
+                            placeholder="내 입맛에 어땠는지 의견을 나눠요."></textarea>
+                        <button type="button" id="reviewWriteBtn">작성하기</button>
+                    </div>
+                </div>
+
+                <div class="boxStyle roundCorner shaDow">
+                    <h4>인기 게시글 <span>HOT</span></h4>
+                    <ul class="board_w100">
+<?php foreach($allboardInfo as $board){ ?>
+    <li>
+        <a href="board_view.php?boardId=<?=$board['boardId']?>">
+            <div class="board_info">
+                <div class="board_title textCut"><?=$board['boardTitle']?></div>
+                <div class="board_author textCut"><?=$board['boardAuthor']?></div>
+                <div class="board_date"><?=date('m-d', $board['boardRegTime'])?></div>
+                <div class="board_view"><span><?=$board['boardView']?></span></div>
+            </div>
+        </a>
+    </li>
+<?php } ?>
+                    </ul>
                     <div class="board_page_option">
                         <div class="board_pages">
                             <ul class="pages_list">
@@ -87,74 +235,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="best_list boxStyle roundCorner shaDow">
-
-                    <h4>인기 게시글 목록보기</h4>
-
-                    <ul class="board_w100">
-                        <li>
-                            <a href="#">
-                                <div class="board_title">
-                                    <p>제목이 아주 긴 경우 :: 말줄임표__ 술 땡기는 금요일~ 곱창에 소주 땡기네요.술 땡기는 금요일~ 곱창에 소주 땡기네요.술 땡기는 금요일~
-                                        곱창에 소주 땡기네요.</p>
-                                </div>
-                                <div class="board_reaction">
-                                    <p>조회수 <span>999</span></p>
-                                    <p>댓글 <span>25</span></p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <div class="board_title">
-                                    <p>술 땡기는 금요일~ 곱창에 소주 땡기네요.</p>
-                                </div>
-                                <div class="board_reaction">
-                                    <p>조회수 <span>999</span></p>
-                                    <p>댓글 <span>25</span></p>
-                                </div>
-                            </a>
-                        </li>
-
-                    </ul>
-                </div>
             </section>
             <!-- main_contents end -->
 
-            <aside id="side_wrap">
-                <div class="search_box side_box roundCorner shaDow">
-                    <input type="text" placeholder="취중진담 통합 검색">
-                    <button><i class="fa-solid fa-magnifying-glass"></i></button>
-                </div>
-
-                <!-- 로그인 함 -->
-                <!-- <div class="info_box side_box roundCorner shaDow">
-                    <div class="login_info">
-                        <img src="assets/img/img500.jpg" alt="유저 이미지">
-                        <p>홍길동님 어서오세요.</p>
-                        <ul>
-                            <li><a href="#">로그아웃</a></li>
-                            <li><a href="#">마이페이지</a></li>
-                            <li><a href="#">설정</a></li>
-                        </ul>
-                    </div>
-                    <button class="sideBtn">새 글쓰기</button>
-                </div> -->
-
-                <!-- 로그인 안함 -->
-                <div class="info_box side_box roundCorner shaDow">
-                    <div class="login_info not_login">
-                        <p><i class="fa-solid fa-icons"></i> <br> 회원가입하고 <br> 더 많은 기능을 누리세요</p>
-                        <ul>
-                            <li><a href="#">회원가입</a></li>
-                            <li><a href="#">회원정보 찾기</a></li>
-                        </ul>
-                    </div>
-                    <button class="sideBtn" onclick="location.href='bin.html'">로그인</button>
-                </div>
-
-
-            </aside>
+            <?php include "../include/sidewrap.php"; ?>
             <!-- side_box end -->
 
         </main>
@@ -162,9 +246,223 @@
     </div>
     <!-- wrapper end -->
 
-    <!-- Swiper JS CDN 불러옴 -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-    <script src="assets/js/swiper.js"></script>
+    <div id="popupDelete" class="none">
+        <div class="review__delete ">
+            <h4>댓글 삭제</h4>
+            <label for="reviewDeletePass" class="blind">비밀번호</label>
+            <input type="password" id="reviewDeletePass" name="reviewDeletePass" placeholder="비밀번호">
+            <p>*계정 비밀번호를 입력해주세요!</p>
+            <div class="btn2">
+                <button id="reviewDeleteCancle">취소</button>
+                <button id="reviewDeleteButton">삭제</button>
+            </div> 
+        </div>
+    </div>
+
+    <div id="popupModify" class="none">
+        <div class="review__modify ">
+            <h4>댓글 수정</h4>            
+            <label for="reviewModifyPass" class="blind">비밀번호</label>
+            <textarea name="reviewModifyMsg" id="reviewModifyMsg" rows="4" placeholder="수정할 내용을 적어주세요!"></textarea>
+            <input type="password" id="reviewModifyPass" name="reviewModifyPass" placeholder="비밀번호">
+            <p>*계정 비밀번호를 입력해주세요!</p>
+            <div class="btn2">
+                <button id="reviewModifyCancle">취소</button>
+                <button id="reviewModifyButton">수정</button>
+            </div> 
+        </div>
+    </div>
+
 </body>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/translations/ko.js"></script>
+
+<script>
+    const likeBtn = document.querySelector(".good");
+    const heart = document.querySelector(".info_list i");
+
+    // 댓글 갯수 구하기 
+    const commentCount = document.querySelectorAll(".count");
+    const commentNum = document.querySelector(".alcohol_review h4 span");
+
+    commentNum.textContent = commentCount.length; 
+    
+</script>
+
+
+<script>
+    // 댓글 쓰기 버튼
+    $("#reviewWriteBtn").click(function(){
+        if($("#review_write").val() == ""){
+            alert("댓글을 작성해주세요!");
+            $("#review_write").focus();
+        } else {
+            alert($("#review_write").val())
+            $.ajax({
+                url: "review_writeSave.php",
+                method: "POST",
+                dataType: "json",
+                data: {
+                    "boardId": <?=$boardId?>,
+                    "myMemberID": <?=$myMemberID?>,
+                    "memberPass": "<?=$memberInfo['youPass']?>",
+                    "name": "<?=$memberInfo['youNick']?>",
+                    "msg": $("#review_write").val()
+                },
+                success: function(data){
+                    console.log(data);
+                    location.reload();
+                },
+                error: function(request, status, error){
+                    console.log("request" + request);
+                    console.log("status" + status);
+                    console.log("error" + error);
+                }
+            })
+        }
+    });
+
+    // 댓글 삭제 버튼
+    $(".review_text .delete").click(function(e){
+        e.preventDefault();
+        $("#popupDelete").removeClass("none");
+        reviewId = $(this).data("review-id");
+    });
+
+    // 댓글 취소 버튼 --> 취소
+    $("#reviewDeleteCancle").click(function(e){
+        $("#popupDelete").addClass("none");
+    })
+
+    // 댓글 삭제 버튼 --> 삭제 버튼
+    $("#reviewDeleteButton").click(function(){
+        if($("#reviewDeletePass").val() == ""){
+            alert("댓글 삭제 시 비밀번호를 작성해주세요!");
+            $("#reviewDeleteButton").focus();
+        } else {
+            $.ajax({
+                url: "review_deleteSave.php",
+                method: "POST",
+                dataType: "json",
+                data: {
+                    "reviewPass": $("#reviewDeletePass").val(),
+                    "reviewId": reviewId,
+                },
+                success: function(data){
+                    console.log(data);
+                    if(data.result == "bad"){
+                        alert("비밀번호가 일치하지 않습니다.");
+                    } else {
+                        alert("댓글이 삭제되었습니다.");
+                    }
+                    location.reload();
+                },
+                error: function(request, status, error){
+                    console.log("request" + request);
+                    console.log("status" + status);
+                    console.log("error" + error);
+                }
+            })
+        }
+    });
+
+    // 댓글 수정 버튼
+    $(".review_text .modify ").click(function(e){
+        e.preventDefault();
+        $("#popupModify").removeClass("none");
+        reviewId = $(this).data("review-id");
+        
+        let reviewMsg = $(this).closest(".review__modify").find("p").text();
+        $("#reviewModifyMsg").val(reviewMsg)
+    });
+
+    // 댓글 취소 버튼 --> 취소
+    $("#reviewModifyCancle").click(function(e){
+        $("#popupModify").addClass("none");
+    })
+
+    // 댓글 수정 버튼 --> 수정 버튼
+    $("#reviewModifyButton").click(function(){
+        if($("#reviewModifyPass").val() == ""){
+            alert("댓글 작성시 비밀번호를 작성해주세요!");
+            $("#reviewModifyPass").focus();
+        } else {
+            $.ajax({
+                url: "review_ModifySave.php",
+                method: "POST",
+                dataType: "json",
+                data: {
+                    "reviewMsg": $("#reviewModifyMsg").val(),
+                    "reviewPass": $("#reviewModifyPass").val(),
+                    "reviewId": reviewId,
+                },
+                success: function(data){
+                    console.log(data);
+                    if(data.result == "bad"){
+                        alert("비밀번호가 일치하지 않습니다.");
+                    } else {
+                        alert("댓글이 수정되었습니다.");
+                    }
+                    location.reload();
+                },
+                error: function(request, status, error){
+                    console.log("request" + request);
+                    console.log("status" + status);
+                    console.log("error" + error);
+                }
+            })
+        }
+    });
+
+    // 좋아요 기능 구현 
+
+    $(".good").click(function(){
+        $.ajax({
+            url: "board_goodSave.php",
+            method: "POST",
+            dataType: "json",
+            data: {
+                "boardId": <?=$boardId?>,
+                "myMemberID": <?=$myMemberID?>,
+                "boardLike": "1",
+            },
+            success: function(data){
+                console.log(data);
+                location.reload();
+            },
+            error: function(request, status, error){
+                console.log("request" + request);
+                console.log("status" + status);
+                console.log("error" + error);
+            }
+            })
+        }
+    );
+
+    function confirmDelete(boardId) {
+        if (confirm('정말 삭제하시겠습니까?')) {
+            if ('<?= $memberId ?>' === '<?= $myMemberId ?>') {
+                window.location.href = 'board_delete.php?boardId=' + boardId;
+            } else {
+                alert("삭제 권한이 없습니다.");
+            }
+        }
+    }
+
+    function confirmModify(boardId) {
+        if (confirm('수정하시겠습니까?')) {
+            if ('<?= $memberId ?>' === '<?= $myMemberId ?>') {
+                window.location.href = 'board_modify.php?boardId=' + boardId;
+            } else {
+                alert("수정 권한이 없습니다.");
+            }
+        }
+    }
+
+</script>
+
 
 </html>

@@ -1,3 +1,7 @@
+<?php
+    include "../connect/connect.php";
+    include "../connect/session.php";
+?>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -45,16 +49,22 @@
                 <div class="best_list boxStyle roundCorner shaDow ">
                     <div class="board">
                         <div class="board_form">
-                            <form action="board_writeSave.php" name="blog_writeSave" method="post" enctype="multipart/form-data">
+                            <form action="board_writeSave.php" name="board_writeSave" method="post" enctype="multipart/form-data">
                                 <legend class="blind"></legend>
                                 <div class="form_box">
                                     <div class="board_title">
-                                        <h2>신청하고 싶은 술을 작성해주세요.</h2>
+                                        <h2>글을 작성해주세요</h2>
                                     </div>
                                     <div class="board_text">
+                                        <div class="board_cate selectBox3">
+                                            <select name="boardCategory" id="boardCategory"><i class="fa-solid fa-angle-down"></i>
+                                                <option value="커뮤니티">커뮤니티</option>
+                                                <option value="술신청">술 신청</option>
+                                                <option value="일기장">일기장</option>
+                                            </select>
+                                        </div>
                                         <div class="board_post">
                                             <label for="boardFile" class="blind link inputStyle mb20"></label>
-                                            <!-- accept=".jpg, .jpeg, .png, .gif, .webp" -->
                                             <input type="file" id="boardFile" name="boardFile" class="fa-regular input_img">
                                             <p>jpg, gif, png, webp 파일만 넣을 수 있습니다. 이미지 용량은 1MB를 넘길 수 없습니다.</p>
                                         </div>
@@ -65,11 +75,11 @@
                                                 placeholder="제목을 작성해주세요"></textarea>
                                         </div>
                                         <div class="board_item">
-                                            <div class="board_content">
+                                            <div class="board_contents">
                                                 <label for="boardContents"></label>
-                                                <textarea id="boardContents" name="boardContents" cols="50" rows="8"
+                                                <textarea type="text" id="boardContents" name="boardContents" cols="50" rows="1"
                                                     class="board_input_contents inputStyle placeholder"
-                                                    placeholder="원하는 술을 신청해주세요"></textarea>
+                                                    placeholder="내용을 작성해주세요."></textarea>
                                             </div>
                                         </div>
                                         <div class="create">
@@ -86,38 +96,7 @@
             </section>
             <!-- main_contents end -->
 
-            <aside id="side_wrap">
-                <div class="search_box side_box roundCorner shaDow">
-                    <input type="text" placeholder="취중진담 통합 검색">
-                    <button><i class="fa-solid fa-magnifying-glass"></i></button>
-                </div>
-
-                <!-- 로그인 함 -->
-                <div class="info_box side_box roundCorner shaDow">
-                    <div class="login_info">
-                        <img src="../assets/img/img500.jpg" alt="유저 이미지">
-                        <p>홍길동님 어서오세요.</p>
-                        <ul>
-                            <li><a href="#">로그아웃</a></li>
-                            <li><a href="#">마이페이지</a></li>
-                            <li><a href="#">설정</a></li>
-                        </ul>
-                    </div>
-                    <button class="sideBtn">새 글쓰기</button>
-                </div>
-
-                <!-- 로그인 안함 -->
-                <!-- <div class="info_box side_box roundCorner shaDow">
-                    <div class="login_info not_login">
-                        <p><i class="fa-solid fa-icons"></i> <br> 회원가입하고 <br> 더 많은 기능을 누리세요</p>
-                        <ul>
-                            <li><a href="#">회원가입</a></li>
-                            <li><a href="#">회원정보 찾기</a></li>
-                        </ul>
-                    </div>
-                    <button class="sideBtn" onclick="location.href='bin.html'">로그인</button>
-                </div> -->
-            </aside>
+            <?php include "../include/sidewrap.php"; ?>
             <!-- side_box end -->
 
         </main>
@@ -129,7 +108,7 @@
     <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/translations/ko.js"></script>
     <script>
         ClassicEditor
-            .create(document.querySelector('.board_content'), {
+            .create(document.querySelector('#boardContents'), {
                 language: 'ko' 
             })
             .catch(error => {

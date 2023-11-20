@@ -8,11 +8,10 @@
     $youNick = $_POST['youNick'];
     $youEmail = $_POST['youEmail'];
     $youBirth = $_POST['youBirth'];
+    $youAddress = mysqli_real_escape_string($connect, $_POST['youAddress1']."*".$_POST['youAddress2']."*".$_POST['youAddress3']);
     $regTime = time();
 
-    echo $youId, $youPass, $youName, $youNick, $youEmail, $youBirth, $regTime;
-
-    $sql = "INSERT INTO drinkMembers(youId, youPass, youName, youNick, youEmail, youBirth, regTime) VALUES('$youId', '$youPass', '$youName', '$youNick', '$youEmail', '$youBirth',  '$regTime')";
+    $sql = "INSERT INTO drinkMember(youId, youPass, youName, youNick, youEmail, youBirth, youAddress, youImgFile, regTime) VALUES('$youId', '$youPass', '$youName', '$youNick', '$youEmail', '$youBirth', 'profile.png', '$regTime')";
     $result = $connect -> query($sql);
 
 ?>

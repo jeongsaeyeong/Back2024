@@ -12,7 +12,7 @@
     <meta name="keywords" content="웹퍼블리셔,프론트엔드, php, 포트폴리오, 커뮤니티, 술, publisher, css3, html, markup, design">
 
     <!-- favicon -->
-    <link rel="icon" href="assets/favicon/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../assets/favicon/favicon.ico" type="image/x-icon">
 
     <!-- fontasome -->
     <script src="https://kit.fontawesome.com/2cf6c5f82a.js" crossorigin="anonymous"></script>
@@ -25,7 +25,7 @@
     <link href="../assets/css/common.css" rel="stylesheet" />
 
     <!-- js -->
-    <script src="assets/js/scrollEvent.js"></script>
+    <script src="../assets/js/scrollEvent.js"></script>
 </head>
 
 <body>
@@ -34,7 +34,7 @@
         <header id="header" class="leftHeader shaDow">
             <h1 class="header_logo">
                 <a href="index.html">
-                    <img src="assets/img/logo.svg" alt="logo">
+                    <img src="../assets/img/logo.svg" alt="logo">
                 </a>
             </h1>
             <nav class="header_nav" role="navigation" aria-label="main">
@@ -53,7 +53,7 @@
         <div class="topLogo">
             <h1 class="header_logo">
                 <a href="index.html">
-                    <img src="assets/img/logo.svg" alt="logo">
+                    <img src="../assets/img/logo.svg" alt="logo">
                 </a>
             </h1>
         </div>
@@ -64,7 +64,8 @@
                     <li><a href="event.html" aria-label="이벤트"><i class="fa-solid fa-gift"></i></a></li>
                     <li><a href="index.html" aria-label="홈"><i class="fa-solid fa-house"></i></a></li>
                     <li><a href="board.html" aria-label="자유게시판"><i class="fa-regular fa-comments"></i></a></li>
-                    <li class="active"><a href="mypage.html" aria-label="마이페이지"><i class="fa-regular fa-user"></i></a></li>
+                    <li class="active"><a href="mypage.html" aria-label="마이페이지"><i class="fa-regular fa-user"></i></a>
+                    </li>
                 </ul>
             </nav>
         </header>
@@ -83,20 +84,25 @@
 
                     <div id="mypage_main" class="tab-content">
                         <div class="main_box">
-                            <div class="header_img"><img src="assets/img/mypage_header.jpg" alt=""></div>
+                            <div class="header_img"><img src="../assets/img/mypage_header.jpg" alt=""></div>
                             <div class="profile_box">
-                                <div class="profile_img"><img src="assets/img/profile.png" alt=""></div>
+                                <div class="profile_img"><img src="../assets/img/profile.png" alt=""></div>
                                 <div class="profile_text">
-                                    <div class="youNick"><h2>닉네임</h2></div>
+                                    <div class="youNick">
+                                        <h2>닉네임</h2>
+                                    </div>
                                     <div class="youId"><span>@abcdef_01234</span></div>
                                     <div class="youemail"><span>12345890@naver.com</span></div>
                                 </div>
                                 <div class="profile_modify">
                                     <ul>
-                                        <li><a href="profilemodify.html">프로필 수정하기</a></li>
+                                        <li><a href="profilemodify.php">프로필 수정하기</a></li>
                                     </ul>
                                     <ul>
-                                        <li><a href="setting.html"><img src="assets/img/setting.svg" alt="">설정</a></li>
+                                        <li><button id="not_join">회원탈퇴</button></li>
+                                    </ul>
+                                    <ul>
+                                        <li><a href="passmodify.php">비밀번호 수정</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -106,7 +112,7 @@
                     <div id="mypage_diary" class="tab-content">
                         <div class="today_diary">
                             <h2>12월 32일</h2>
-                            <div class="today_photo"><img src="assets/img/diary.jpg" alt=""></div>
+                            <div class="today_photo"><img src="../assets/img/diary.jpg" alt=""></div>
                             <div class="today_write">
                                 <span>
                                     대충 내용이 들어가는 자리대충 내용이 들어가는 자리대충 내용이 들어가는
@@ -116,26 +122,25 @@
                                     대충 내용이 들어가는 자리대충 내용이 들어가는 자리대충 내용이 들어가는
                                 </span>
                             </div>
-                            <div class="today_drink">
-                                <h3>오늘 마신 양</h3>
-                                <div>
-                                    <div class="drink_soju">
-                                        <h4>소주</h4>
-                                        <p>1병</p>
-                                    </div>
-                                    <div class="drink_beer">
-                                        <h4>맥주</h4>
-                                        <p>1병</p>
-                                    </div>
-                                    <div class="drink_etc">
-                                        <h4>기타</h4>
-                                        <p>1병</p>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                         <a href="diary_write.html" class="wirte_button"><span>글쓰기</span></a>
-                        <div class="pagenation">페이지 넘김 부분</div>
+                        <div class="board_page_option">
+                            <div class="board_pages">
+                                <ul class="pages_list">
+                                    <li class="first"><a href="#">&lt;&lt;</a></li>
+                                    <li class="prev"><a href="#">&lt;</a></li>
+                                    <li class="active"><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">5</a></li>
+                                    <li class="next"><a href="#">></a></li>
+                                    <li class="last"><a href="#">>></a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+
                     </div>
 
                     <div id="mypage_activity" class="tab-content mypage_activity">
@@ -145,73 +150,41 @@
                                 <div class="my_board_table">
                                     <table>
                                         <colgroup>
-                                            <col style="width: 20%;">
-                                            <col>
+                                            <col style="width: 100%;">
                                         </colgroup>
                                         <tr>
-                                            <th>제목</th>
                                             <th>내용</th>
                                         </tr>
                                         <tr>
-                                            <td>제목 1</td>
                                             <td>이것은 첫 번째 내용입니다.</td>
                                         </tr>
                                         <tr>
-                                            <td>제목 2</td>
                                             <td>이것은 두 번째 내용입니다.</td>
                                         </tr>
                                         <tr>
-                                            <td>제목 1</td>
                                             <td>이것은 첫 번째 내용입니다.</td>
                                         </tr>
                                         <tr>
-                                            <td>제목 2</td>
                                             <td>이것은 두 번째 내용입니다.</td>
                                         </tr>
                                         <tr>
-                                            <td>제목 1</td>
                                             <td>이것은 첫 번째 내용입니다.</td>
                                         </tr>
-                                        <tr>
-                                            <td>제목 2</td>
-                                            <td>이것은 두 번째 내용입니다.</td>
-                                        </tr>
-                                        <tr>
-                                            <td>제목 1</td>
-                                            <td>이것은 첫 번째 내용입니다.</td>
-                                        </tr>
-                                        <tr>
-                                            <td>제목 2</td>
-                                            <td>이것은 두 번째 내용입니다.</td>
-                                        </tr>
-                                        <tr>
-                                            <td>제목 1</td>
-                                            <td>이것은 첫 번째 내용입니다.</td>
-                                        </tr>
-                                        <tr>
-                                            <td>제목 2</td>
-                                            <td>이것은 두 번째 내용입니다.</td>
-                                        </tr>
-                                        <tr>
-                                            <td>제목 1</td>
-                                            <td>이것은 첫 번째 내용입니다.</td>
-                                        </tr>
-                                        <tr>
-                                            <td>제목 2</td>
-                                            <td>이것은 두 번째 내용입니다.</td>
-                                        </tr>
-                                        <tr>
-                                            <td>제목 1</td>
-                                            <td>이것은 첫 번째 내용입니다.</td>
-                                        </tr>
-                                        <tr>
-                                            <td>제목 2</td>
-                                            <td>이것은 두 번째 내용입니다.</td>
-                                        </tr>
-                                        
                                     </table>
                                 </div>
-                                <div class="pagenation">페이지 넘김 부분</div>
+                                <div class="board_page_option">
+                                    <div class="board_pages">
+                                        <ul class="pages_list">
+                                            <li class="first"><a href="#">&lt;&lt;</a></li>
+                                            <li class="prev"><a href="#">&lt;</a></li>
+                                            <li class="active"><a href="#">1</a></li>
+                                            <li><a href="#">2</a></li>
+                                            <li><a href="#">3</a></li>
+                                            <li class="next"><a href="#">></a></li>
+                                            <li class="last"><a href="#">>></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                             <div class="my_comment">
                                 <h2>
@@ -220,24 +193,32 @@
                                 <div class="my_comment_table">
                                     <table>
                                         <colgroup>
-                                            <col style="width: 20%;">
-                                            <col>
+                                            <col style="width: 100%;">
                                         </colgroup>
                                         <tr>
-                                            <th>제목</th>
                                             <th>내용</th>
                                         </tr>
                                         <tr>
-                                            <td>제목 1</td>
                                             <td>이것은 첫 번째 내용입니다.</td>
                                         </tr>
                                         <tr>
-                                            <td>제목 2</td>
                                             <td>이것은 두 번째 내용입니다.</td>
                                         </tr>
                                     </table>
                                 </div>
-                                <div class="pagenation">페이지 넘김 부분</div>
+                                <div class="board_page_option">
+                                    <div class="board_pages">
+                                        <ul class="pages_list">
+                                            <li class="first"><a href="#">&lt;&lt;</a></li>
+                                            <li class="prev"><a href="#">&lt;</a></li>
+                                            <li class="active"><a href="#">1</a></li>
+                                            <li><a href="#">2</a></li>
+                                            <li><a href="#">3</a></li>
+                                            <li class="next"><a href="#">></a></li>
+                                            <li class="last"><a href="#">>></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -259,7 +240,7 @@
                                         <th>Date</th>
                                     </tr>
                                     <tr>
-                                        <td><img src="assets/img/Rectangle.jpg" alt=""></td>
+                                        <td><img src="../assets/img/Rectangle.jpg" alt=""></td>
                                         <td>정말로 맛있는 술</td>
                                         <td class="text">
                                             적당한 리뷰 내용 적당한 리뷰 내용
@@ -269,40 +250,52 @@
                                         <td>10월 21일</td>
                                     </tr>
                                     <tr>
-                                        <td><img src="assets/img/Rectangle.jpg" alt=""></td>
+                                        <td><img src="../assets/img/Rectangle.jpg" alt=""></td>
                                         <td>술 1</td>
                                         <td class="text">이것은 첫 번째 내용입니다.</td>
                                         <td>10월 21일</td>
                                     </tr>
                                     <tr>
-                                        <td><img src="assets/img/Rectangle.jpg" alt=""></td>
+                                        <td><img src="../assets/img/Rectangle.jpg" alt=""></td>
                                         <td>술 1</td>
                                         <td class="text">이것은 첫 번째 내용입니다.</td>
                                         <td>10월 21일</td>
                                     </tr>
                                     <tr>
-                                        <td><img src="assets/img/Rectangle.jpg" alt=""></td>
+                                        <td><img src="../assets/img/Rectangle.jpg" alt=""></td>
                                         <td>술 1</td>
                                         <td class="text">이것은 첫 번째 내용입니다.</td>
                                         <td>10월 21일</td>
                                     </tr>
                                     <tr>
-                                        <td><img src="assets/img/Rectangle.jpg" alt=""></td>
+                                        <td><img src="../assets/img/Rectangle.jpg" alt=""></td>
                                         <td>술 1</td>
                                         <td class="text">이것은 첫 번째 내용입니다.</td>
                                         <td>10월 21일</td>
                                     </tr>
                                     <tr>
-                                        <td><img src="assets/img/Rectangle.jpg" alt=""></td>
+                                        <td><img src="../assets/img/Rectangle.jpg" alt=""></td>
                                         <td>술 1</td>
                                         <td class="text">이것은 첫 번째 내용입니다.</td>
                                         <td>10월 21일</td>
                                     </tr>
                                 </table>
+                                <div class="board_page_option">
+                                    <div class="board_pages">
+                                        <ul class="pages_list">
+                                            <li class="first"><a href="#">&lt;&lt;</a></li>
+                                            <li class="prev"><a href="#">&lt;</a></li>
+                                            <li class="active"><a href="#">1</a></li>
+                                            <li><a href="#">2</a></li>
+                                            <li><a href="#">3</a></li>
+                                            <li class="next"><a href="#">></a></li>
+                                            <li class="last"><a href="#">>></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
 
             </section>
@@ -317,7 +310,7 @@
                 <!-- 로그인 함 -->
                 <div class="info_box side_box roundCorner shaDow">
                     <div class="login_info">
-                        <img src="assets/img/img500.jpg" alt="유저 이미지">
+                        <img src="../assets/img/img500.jpg" alt="유저 이미지">
                         <p>홍길동님 어서오세요.</p>
                         <ul>
                             <li><a href="index.html">로그아웃</a></li>

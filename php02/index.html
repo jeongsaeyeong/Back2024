@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,16 +13,19 @@
             font-family: var(--main-nanum);
             font-size: 1.6rem;
         }
+
         a:hover {
             text-decoration: underline;
             text-underline-position: under;
         }
+
         .box {
             display: flex;
             justify-content: space-around;
         }
     </style>
 </head>
+
 <body>
     <div class="box">
         <ul>
@@ -34,7 +38,19 @@
 
         <ul>
             <li><a href="connect/connect.php">DB 접속(connect.php)</a></li>
+
+            <li><a href="create/createMember.php">멤버 테이블 만들기(createMember.php)</a></li>
+            <li><a href="create/createBlogComment.php">댓글 테이블 만들기(createBlogComment.php)</a></li>
+
+            <li><a href="join/joinAgree.php">회원 가입: 이용 약관</a></li>
+            <li><a href="join/joinInsert.php">회원 가입: 정보 입력</a></li>
+            <li><a href="join/joinresult.php">회원 가입: 가입 완료</a></li><br>
+
+            <li><a href="create/createBlog.php">블로그 테이블</a></li><br>
+            <li><a href="blog/blog.php">블로그 메인</a></li><br>
+            <li><a href="blog/blogwrite.php">블로그 글쓰기</a></li><br>
         </ul>
     </div>
 </body>
+
 </html>

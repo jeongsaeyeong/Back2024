@@ -11,7 +11,7 @@
     $youBirth = mysqli_real_escape_string($connect, $_POST['youBirth']);
     $regTime = time();
 
-    $sql = "INSERT INTO drinkMember(youId, youPass, youName, youNick, youEmail, youBirth, youAddress, regTime) VALUES ('$youId', '$youPass', '$youName', '$youNick', '$youEmail', '$youBirth', '$youAddress', $regTime)";
+    $sql = "INSERT INTO drinkMember(youId, youPass, youName, youNick, youEmail, youBirth, youAddress, youImgFile, regTime) VALUES ('$youId', '$youPass', '$youName', '$youNick', '$youEmail', '$youBirth', '$youAddress',  '../assets/img/profile.png', $regTime)";
     $connect -> query($sql);
 
     // 데이터 베이스 연결 닫기
@@ -64,7 +64,7 @@
                     </p>
                 </div>
                 <ul class="button__style">
-                    <li><a href="login.html">로그인</a></li>
+                    <li><a href="../login/login.php">로그인</a></li>
                 </ul>
             </div>
         </main>

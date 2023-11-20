@@ -10,7 +10,6 @@
     color: var(--red);
     font-weight: 500;
 }
-.board__search .right {}
 .board__search .right input {
     padding: 11px 20px;
     border: 0;
